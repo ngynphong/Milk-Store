@@ -7,14 +7,14 @@ app.use(cors());
 
 const db = require('./models');
 
-// Router
-// const postRouter = require('./routes/Posts');
+//Router
+const productItemRouter = require('./routes/ProductItem');
 
-// app.use('/posts', postRouter);
+app.use('/productItem', productItemRouter);
 
 
-db, db.sequelize.sync().then(() => {
+db.sequelize.sync().then(() => {
     app.listen(3001, () => {
-        console.log('Server rinning on port 3001')
+        console.log('Server running on port 3001')
     });
 });
