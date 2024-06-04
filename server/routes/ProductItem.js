@@ -13,8 +13,8 @@ router.post('/',async (req, res) => {
     res.json(productItem);
 })
 
-router.get('/byId/:id',async (req, res) => {
-    const productItemID = req.params.id;
+router.get('/byId/:ProductItemID',async (req, res) => {
+    const productItemID = req.params.ProductItemID;
     const product =  await ProductItem.findByPk(productItemID);
     res.json(product);
 })

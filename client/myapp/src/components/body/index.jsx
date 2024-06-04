@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
 import "./index.scss";
 function Body() {
 
+    let navigate = useNavigate();
     const [listOfProductItem, setListOfProductItem] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:3001/productItem').then((response) => {
@@ -22,10 +23,10 @@ function Body() {
                 <div className="body__1__product">
                     {listOfProductItem.map((value, key) => {
                         return (
-                            <div>
-                                <Link id="linkTest" to="/product" key={key} onClick={() => {
-                                    negative(`/product/${value.id}`);
-                                }}>
+                            <div key={key} onClick={() => {
+                                navigate(`/productItem/${value.ProductItemID}`);
+                            }}>
+                                <div >
                                     <img src={value.ImgProduct}
                                         alt="" />
                                     <h4>{value.ProductName}</h4>
@@ -33,7 +34,7 @@ function Body() {
                                     <div>
                                         <button>MUA NGAY</button>
                                     </div>
-                                </Link>
+                                </div>
                             </div>
                         )
                     })}
