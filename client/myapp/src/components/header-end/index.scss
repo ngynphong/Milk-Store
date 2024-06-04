@@ -1,0 +1,26 @@
+.header__end{
+    background-color: #F5F7FD;
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
+.list__link{
+    img {
+        margin-top: 15px;
+        margin-right: 10px; // adjust the value as needed
+    }
+} 
+.shop{
+    margin-top: 60px;
+    font-size: 30px;
+}
+
+.chamsoc{
+    font-size: 20px;
+    li{
+        margin-top: 10px;
+        list-style-type: none;
+    }
+}

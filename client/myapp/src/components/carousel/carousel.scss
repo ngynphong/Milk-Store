@@ -1,0 +1,34 @@
+.carousel{
+
+    img{
+        margin-top: 130px;
+        width: 100%;
+        height: 60dvh;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+
+.carousel__swiper {
+    position: relative; /* Để container này làm gốc cho phần tử con */
+    
+  }
+  
+.carousel__wellcome{
+    position: absolute;
+    margin-top: -400px;
+    z-index: 1;
+    padding-left: 190px;
+    font-size: 30px;
+    color: pink;
+    font-family: "Poppins", sans-serif;
+
+    button{
+        cursor: pointer;
+        background-color: pink;
+        padding: 10px 30px;
+        border-radius: 5px;
+        color: white;
+    }
+}

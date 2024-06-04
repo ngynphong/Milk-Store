@@ -1,0 +1,168 @@
+.swiper__product {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 150px;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 350px;
+}
+
+.swiper__item {
+  flex: 1 1 50%;
+  max-width: 40%;
+  margin-left: 120px;
+  img{
+    width: 400px;
+  }
+
+}
+
+.mySwiper2 {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  // margin-left: 100px;
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.mySwiper {
+  margin-top: 10px;
+  .swiper-slide {
+    width: 90px;
+    height: 90px;
+    opacity: 0.4;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    &.swiper-slide-thumb-active {
+      opacity: 1;
+      border: 2px solid #ff9800;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.swiper__info {
+  flex: 1 1 50%;
+  max-width: 50%;
+   display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  
+  h1 {
+    font-size: 24px;
+    color: #ff4081;
+    margin-bottom: 10px;
+  }
+
+  span {
+    font-size: 22px;
+    color: black ;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  button {
+    
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    margin-top: 100px;
+
+
+    &:first-of-type {
+      background-color: #ff9800;
+      color: #fff;
+    }
+
+    &:last-of-type {
+      background-color: #e91e63;
+      color: #fff;
+    }
+  }
+}
+
+.swiper__button{
+
+  button{
+    padding: 10px 20px;
+  }
+}
+
+.info__detail {
+
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .info__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+
+    tbody {
+      tr {
+        td {
+          padding: 10px;
+          border: 1px solid #ccc;
+
+          &:first-child {
+            font-weight: bold;
+            background-color: #f9f9f9;
+          }
+
+          &:last-child {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+
+    // Styling for nested <td> in "Sản xuất tại"
+    tr:nth-of-type(4) {
+      td {
+        &:first-child {
+          // Keeping the default style for the first child
+        }
+
+        &:last-child {
+          // Ensuring no extra border inside the nested <td>
+          td {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
