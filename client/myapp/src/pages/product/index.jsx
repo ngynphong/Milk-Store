@@ -14,17 +14,20 @@ function Product() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [productItemObject, setProductItemObject] = useState({});
-  const [brandMilkObject, setbrandMilkObject] = useState({});
+  // const [brandMilkObject, setbrandMilkObject] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/productItem/byId/${ProductItemId}`).then((response) => {
+    axios.get(`http://localhost:3001/productItem/${ProductItemId}`).then((response) => {
+
       setProductItemObject(response.data);
     });
-    axios.get(`http://localhost:3001/brand`).then((response) => {
-      setbrandMilkObject(response.data);
-    });
+
+    // axios.get(`http://localhost:3001/brand`).then((response) => {
+    //   setbrandMilkObject(response.data);
+    // });
 
   }, []);
+
   return (
     <div>
       <div className="swiper__product">
@@ -42,7 +45,7 @@ function Product() {
               className="mySwiper2"
             >
               <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81584-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
+                <img src={productItemObject.ImgProduct} />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
@@ -64,7 +67,7 @@ function Product() {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81584-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
+                <img src={productItemObject.ImgProduct} />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
@@ -101,7 +104,7 @@ function Product() {
             </tr>
             <tr>
               <td>Thương hiệu</td>
-              <td>{brandMilkObject.Name}</td>
+              <td>{productItemObject.BrandMilk && productItemObject.BrandMilk.name}</td>
             </tr>
             <tr>
               <td>Xuất xứ thương hiệu</td>
