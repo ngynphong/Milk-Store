@@ -1,5 +1,11 @@
 .carousel{
 
+    padding: 20px;
+    max-width: 2000px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 200px;
+    margin-right: 200px;
     img{
         margin-top: 130px;
         width: 100%;
@@ -23,6 +29,7 @@
     font-size: 30px;
     color: pink;
     font-family: "Poppins", sans-serif;
+    margin-left: 70px;
 
     button{
         cursor: pointer;
