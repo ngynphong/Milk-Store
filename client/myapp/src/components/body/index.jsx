@@ -1,28 +1,46 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
+import axios from 'axios';
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 function Body() {
+
+    let navigate = useNavigate();
+    const [listOfProductItem, setListOfProductItem] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:3001/productItem').then((response) => {
+            setListOfProductItem(response.data);
+        })
+
+
+    }, [])
     return (
         <div>
             <div className="body__background1">
-                
+
                 <div className="body">
                     <h1>Ưu Đãi Theo SET 1 </h1>
                 </div>
                 <div className="body__1__product">
-                  
-                    <div>
-                    <Link id="linkTest" to="/product">
-                        <img src="https://cdn1.concung.com/2023/04/43262-99903-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.png"
-                            alt="" />
-                        <h4>Sữa Similac 5G số 4 900g (2-6 tuổi)</h4>
-                        <span>519.000 VND</span>
-                        <div>
-                            <button>MUA NGAY</button>
-                        </div>
-                        </Link>
-                    </div>
-                
-                    <div>
+                    {listOfProductItem.map((value, key) => {
+                        return (
+                            <div key={key} onClick={() => {
+                                navigate(`/productItem/${value.ProductItemID}`);
+                            }}>
+                                <div >
+                                    <img src={value.ImgProduct}
+                                        alt="" />
+                                    <h4>{value.ProductName}</h4>
+                                    <span>{value.Price}</span>
+                                    <div>
+                                        <button>MUA NGAY</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+
+
+                    {/* <div>
                         <img src="https://cdn1.concung.com/2022/07/58388-91241-large_mobile/sua-de-kabrita-so-3-800g-tu-2-tuoi.jpg"
                             alt="" />
                         <h4>Sữa dê Kabrita Số 3 800g (từ 2 tuổi)</h4>
@@ -50,7 +68,7 @@ function Body() {
                         <div>
                             <button>MUA NGAY</button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="body__background2">
