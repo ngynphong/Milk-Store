@@ -16,14 +16,12 @@ app.use('/brand', brandMilkRouter);
 //Router country
 const CountryRouter = require('./routes/Country');
 app.use('/country', CountryRouter);
-
-
-
-
 //Router user
 const userRouter = require('./routes/User');
 app.use('/auth', userRouter);
 
+const roleRouter = require('./routes/Role');
+app.use('/role', roleRouter);
 
 
 db.sequelize.sync().then(() => {
