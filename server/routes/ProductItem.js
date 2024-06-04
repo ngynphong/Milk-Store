@@ -13,4 +13,10 @@ router.post('/',async (req, res) => {
     res.json(productItem);
 })
 
+router.get('/byId/:id',async (req, res) => {
+    const productItemID = req.params.id;
+    const product =  await ProductItem.findByPk(productItemID);
+    res.json(product);
+})
+
 module.exports = router;
