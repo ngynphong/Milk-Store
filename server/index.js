@@ -7,10 +7,13 @@ app.use(cors());
 
 const db = require('./models');
 
-//Router
+//Router productitem
 const productItemRouter = require('./routes/ProductItem');
-
 app.use('/productItem', productItemRouter);
+//Router brandmilk
+const brandMilkRouter = require('./routes/BrandMilk');
+app.use('/brand', brandMilkRouter);
+
 
 
 db.sequelize.sync().then(() => {

@@ -1,18 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-    const Admin = sequelize.define('Admin', {
-        AdminID: {
+    const Role = sequelize.define('Role', {
+
+        RoleID: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        AccountManager: {
+        Title: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        
     }, {
-        tableName: 'Admin',
+        tableName: 'Role',
         timestamps: false
     });
 
-    return Admin;
+    return Role;
 };

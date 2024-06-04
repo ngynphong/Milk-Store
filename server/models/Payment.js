@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        CustomerID: {
+        UserID: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'Customer',
-                key: 'CustomerID'
+                model: 'User',
+                key: 'UserID'
             }
         },
         Date: {
