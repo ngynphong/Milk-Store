@@ -38,25 +38,25 @@ function Login() {
             <div className="login-container">
                 <div className="login-wrapper">
                     {/* <form className="login-form"> */}
-                        <h1>Đăng nhập</h1>
-                        {/* <div className="input-group">
-                            <input type="email" placeholder="Email" value={Email} onChange={(event) => { setEmail(event.target.value) }} />
+                    <h1>Đăng nhập</h1>
+                    {/* <div className="input-group">
+                            <input type="email" placeholder="Email" name="Email" onChange={(event) => { setEmail(event.target.value) }} />
                         </div>
                         <div className="input-group">
-                            <input type="password" placeholder="Your password" value={Password} onChange={(event) => { setPassword(event.target.value) }}/>
+                            <input type="password" placeholder="Your password" name="Password" onChange={(event) => { setPassword(event.target.value) }}/>
                         </div> */}
 
-                        <div>
-                            <input className="input-group" type="text" onChange={(event) => { setEmail(event.target.value) }} /> <br />
-                            <input className="input-group" type="password" onChange={(event) => { setPassword(event.target.value) }} /> <br />
-                            <button className="login-button" onClick={login}>Login</button>
-                        </div>
+                    <div className="login-form">
+                        <input className="input-group" placeholder="Email" type="text" onChange={(event) => { setEmail(event.target.value) }} /> <br />
+                        <input className="input-group" placeholder="Your password" type="password" onChange={(event) => { setPassword(event.target.value) }} /> <br />
+
                         <div className="remember-forgot">
                             <label>
                                 <input type="checkbox" />Ghi nhớ mật khẩu
                             </label>
                             <a href="#">Quên mật khẩu?</a>
                         </div>
+                        <button className="login-button" onClick={login}>Login</button>
                         {/* <button className="login-button" type='submit' onClick={login} >Đăng nhập</button> */}
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
@@ -67,6 +67,8 @@ function Login() {
                                 </Link>
                             </p>
                         </div>
+                    </div>
+
                     {/* </form> */}
                 </div>
             </div>

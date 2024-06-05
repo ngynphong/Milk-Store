@@ -147,5 +147,8 @@ $button-color: #fff;
                 background-color: darken($secondary-color, 10%);
             }
         }
+        .none{
+            display: none;
+        }
     }
 }

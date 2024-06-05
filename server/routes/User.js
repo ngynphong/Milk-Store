@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
             Address: Address,
         })
         
-        res.json('Sucess');
+        res.json('Sucessfully');
 
     });
 });
