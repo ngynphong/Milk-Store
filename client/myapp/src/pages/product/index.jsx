@@ -2,31 +2,32 @@
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./product1.scss";
 
 function Product() {
 
-  let { ProductItemId } = useParams();
+  let { ProductID } = useParams();
   
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  const [productItemObject, setProductItemObject] = useState({});
+  const [productObject, setProductObject] = useState({});
+  // const [productItem, setProductItem] = useState({});
   // const [brandMilkObject, setbrandMilkObject] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/productItem/${ProductItemId}`).then((response) => {
-
-      setProductItemObject(response.data);
+    axios.get(`http://localhost:3001/product/${ProductID}`).then((response) => {
+      setProductObject(response.data);
+      // setProductItem(response.data.Product)
     });
 
     // axios.get(`http://localhost:3001/brand`).then((response) => {
     //   setbrandMilkObject(response.data);
     // });
 
-  }, []);
+  },[ProductID]);
 
   return (
     <div>
@@ -45,7 +46,7 @@ function Product() {
               className="mySwiper2"
             >
               <SwiperSlide>
-                <img src={productItemObject.ImgProduct} />
+                <img src={productObject.ImgProduct} />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
@@ -67,7 +68,7 @@ function Product() {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img src={productItemObject.ImgProduct} />
+                <img src={productObject.ImgProduct} />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
@@ -84,8 +85,8 @@ function Product() {
 
         <div className="swiper__info">
 
-          <h1>{productItemObject.ProductName}</h1>
-          <span>{productItemObject.Price}</span>
+          <h1>{productObject.ProductName}</h1>
+          <span>{productObject.Price}</span>
           <div className="swiper__button">
             <button>Thêm giỏ hàng</button>
             <button>Mua Ngay</button>
@@ -99,12 +100,12 @@ function Product() {
         <div className="info__table">
           <tbody>
             <tr>
-              <td>{productItemObject.ProductName}</td>
+              <td>{productObject.ProductName}</td>
               {/* <td>Thực phẩm bổ sung cho trẻ 2-6 tuổi: Similac 4</td> */}
             </tr>
             <tr>
               <td>Thương hiệu</td>
-              <td>{productItemObject.BrandMilk && productItemObject.BrandMilk.name}</td>
+              {/* <td>{productItemObject.BrandMilk && productItemObject.BrandMilk.name}</td> */}
             </tr>
             <tr>
               <td>Xuất xứ thương hiệu</td>

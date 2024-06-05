@@ -8,8 +8,8 @@ app.use(cors());
 const db = require('./models');
 
 //Router productitem
-const productItemRouter = require('./routes/ProductItem');
-app.use('/productItem', productItemRouter);
+const productRouter = require('./routes/Product');
+app.use('/product', productRouter);
 //Router brandmilk
 const brandMilkRouter = require('./routes/BrandMilk');
 app.use('/brand', brandMilkRouter);

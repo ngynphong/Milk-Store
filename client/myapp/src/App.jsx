@@ -28,7 +28,7 @@ function App() {
           element: <Promotion/>
         },
         {
-          path: "/productItem/:ProductItemId",
+          path: "/product/:ProductID",
           element: <Product/>,  
         }
 
