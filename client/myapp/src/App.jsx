@@ -9,6 +9,8 @@ import Promotion from "./pages/promotion";
 import Product from "./pages/product";
 
 import PromotionManagement from"./pages/promotion-management"
+import Profile from "./pages/profile";
+import Vieworder from "./pages/vieworder";
 
 function App() {
 
@@ -51,6 +53,14 @@ function App() {
     {
       path: "/promotion-management",
       element: <PromotionManagement/>
+    },
+    {
+      path:"/vieworder",
+      element:<Vieworder/>
+    },
+    {
+      path:"/profile",
+      element:<Profile/>
     },
 
      

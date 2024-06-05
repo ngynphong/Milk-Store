@@ -39,9 +39,41 @@
    }
    
    .header__icon{
+    position: relative;
+    //
        cursor: pointer;
        display: flex;
        gap: 20px;
+       .userdropdow {
+        background: #ffff;
+        display: block;
+        position: absolute;
+        margin-top: 80px;
+
+
+        width: 150px;
+        z-index: 9;
+        padding: 8px 5px 5px 5px;
+        transition: all, 0.3s;
+        opacity: 0;
+        visibility: hidden;
+
+        li {
+            color: black;
+        }
+
+        :hover {
+            color: #fff;
+        }
+
+
+    }
+
+    li:hover .userdropdow {
+        opacity: 1;
+        visibility: visible;
+    }
+
    }
    
    .header__search{

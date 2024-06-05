@@ -30,7 +30,7 @@ $input-border-radius: 5px;
 }
 
 .login-container {
-  background: url('/src/assets/ok.jpeg') no-repeat;
+
   width: 100vw;
   height: 85vh;
   display: flex;
@@ -59,8 +59,11 @@ $input-border-radius: 5px;
       }
 
       .input-group {
+        margin-top: 15px;
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: -10px;
+        padding: 10px;
+        border-radius: 5px;
 
         input {
           width: 100%;
@@ -70,6 +73,20 @@ $input-border-radius: 5px;
           box-sizing: border-box;
         }
       }
+
+      // login.scss
+
+      .input-group.error {
+        border: 1px solid red;
+      }
+
+      .error-message {
+        color: red;
+        font-size: 16px;
+        margin-right: 110px;
+
+      }
+
 
       .remember-forgot {
         display: flex;
@@ -133,3 +150,132 @@ $input-border-radius: 5px;
     }
   }
 }
+
+// // index.scss
+
+// body {
+//   font-family: Arial, sans-serif;
+//   background-color: #f4f4f4;
+//   margin: 0;
+//   padding: 0;
+
+// }
+
+// .header__login {
+//   background-color: #ffffff;
+//   padding: 20px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   border-bottom: 1px solid #e0e0e0;
+
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+//   img {
+//     max-width: 100%;
+//     height: auto;
+//   }
+
+//   h1 {
+//     margin: 0;
+//     font-size: 24px;
+//     color: #333;
+//     position: relative;
+//     padding-left: 20px; // Adds space for the border
+//     margin-top: 50px;
+//     border-left: 2px solid #0000003f; // Border thickness and color
+//     padding-top: 10px; // Adds space above the text
+//     padding-bottom: 10px;
+//   }
+// }
+
+// .login-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: calc(100vh - 70px); // Adjust height as needed
+//   background-color: #f4f4f4;
+// }
+
+// .login-wrapper {
+//   background-color: #ffffff;
+//   padding: 40px;
+//   border-radius: 10px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//   max-width: 400px;
+//   width: 100%;
+// }
+
+// .login-wrapper h1 {
+//   margin-bottom: 20px;
+//   font-size: 28px;
+//   color: #333;
+//   text-align: center;
+// }
+
+// .input-group {
+//   width: 100%;
+//   padding: 10px;
+//   margin-bottom: 10px;
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+//   box-sizing: border-box;
+// }
+
+// .remember-forgot {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-bottom: 20px;
+
+//   label {
+//     display: flex;
+//     align-items: center;
+
+//     input[type="checkbox"] {
+//       margin-right: 5px;
+//     }
+//   }
+
+//   a {
+//     color: #007bff;
+//     text-decoration: none;
+
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//   }
+// }
+
+// .login-button {
+//   width: 100%;
+//   padding: 10px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 5px;
+//   font-size: 16px;
+//   cursor: pointer;
+
+//   &:hover {
+//     background-color: #0056b3;
+//   }
+// }
+
+// .register-link {
+//   text-align: center;
+//   margin-top: 20px;
+
+//   p {
+//     margin: 0;
+
+//     a {
+//       color: #007bff;
+//       text-decoration: none;
+
+//       &:hover {
+//         text-decoration: underline;
+//       }
+//     }
+//   }
+// }
