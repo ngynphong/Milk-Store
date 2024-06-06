@@ -78,13 +78,18 @@ $input-border-radius: 5px;
 
       .input-group.error {
         border: 1px solid red;
+
+        width: 100%;
+
       }
 
       .error-message {
         color: red;
         font-size: 16px;
-        margin-right: 110px;
-
+        margin-top: 15px;
+        margin-bottom: -15px;
+        width: 100%;
+        margin-left: 10px;
       }
 
 

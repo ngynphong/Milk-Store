@@ -1,11 +1,10 @@
-import Header from "../../components/header"
-import HeaderEnd from "../../components/header-end"
+
 import "./index.scss"
 
 function Vieworder() {
     return (
         <div className="vieworder-list">
-            <Header />
+
             <div className="vieworder-list__header">
                 <h2>Danh sách đơn</h2>
             </div>
@@ -45,12 +44,7 @@ function Vieworder() {
                     </tr>
                 </table>
             </div>
-           
-       
-        <div>
-             <HeaderEnd />
         </div>
-        </div>  
     )
 }
 

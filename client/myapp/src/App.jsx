@@ -11,6 +11,7 @@ import Product from "./pages/product";
 import PromotionManagement from"./pages/promotion-management"
 import Profile from "./pages/profile";
 import Vieworder from "./pages/vieworder";
+import Forgotpassword from "./pages/forgotpassword";
 
 function App() {
 
@@ -23,9 +24,14 @@ function App() {
         {
           path: "/",
           element: <HomePage/>, 
-        },   {
+        },   
+        {
           path: "/promotion",
           element: <Promotion/>
+        },
+        {
+          path:"/vieworder",
+          element:<Vieworder/>
         },
         {
           path: "/productItem/:ProductItemId",
@@ -61,6 +67,10 @@ function App() {
     {
       path:"/profile",
       element:<Profile/>
+    },
+    {
+      path:"/forgotpassword",
+      element:<Forgotpassword/>
     },
 
      
