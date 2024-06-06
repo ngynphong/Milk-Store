@@ -15,7 +15,7 @@ router.post('/',async (req, res) => {
 
 router.get('/:OrderID', async (req, res) => {
     const orderID = req.params.OrderID;
-    const order = await Product.findByPk(orderID);
+    const order = await Order.findByPk(orderID);
     res.json(order);
 });
 module.exports = router;

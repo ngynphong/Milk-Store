@@ -15,7 +15,7 @@ router.post('/',async (req, res) => {
 
 router.get('/:CompanyID', async (req, res) => {
     const companyID = req.params.CompanyID;
-    const company = await Product.findByPk(companyID);
+    const company = await Company.findByPk(companyID);
     res.json(company);
 });
 
@@ -31,7 +31,7 @@ router.put('/:CompanyID', async (req, res) => {
 
 router.delete('/:CompanyID', async (req, res) => {
     const companyID = req.params.CompanyID;
-    await Product.destroy({ where: { CompanyID: companyID } });
+    await Company.destroy({ where: { CompanyID: companyID } });
     res.json({ message: 'Product item deleted successfully' });
 });
 

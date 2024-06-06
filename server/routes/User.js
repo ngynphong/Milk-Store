@@ -3,6 +3,34 @@ const router = express.Router();
 const { User } = require('../models')
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
+const { validateToken } = require('../middlewares/AuthMiddleware');
+
+
+router.get('/', async (req, res) => {
+    const listUser = await User.findAll();
+    res.json(listUser);
+});
+
+// router.get('/profile/:UserID', async (req, res) => {
+//     const userID = req.params.UserID;
+//     const user = await User.findByPk(userID);
+//     res.json(user);
+// });
+
+router.get("/profile/:UserID", async (req, res) => {
+    const userid = req.params.UserID;
+  
+    const profile = await User.findByPk(userid, {
+      attributes: { exclude: ["password"] },
+    });
+  
+    res.json(profile);
+  });
+
+// Check authentication route
+router.get('/auth', validateToken, (req, res) => {
+    res.json(req.User);
+});
 
 
 router.post('/', async (req, res) => {
@@ -35,8 +63,7 @@ router.post('/login', async (req, res) => {
             }
             else {
                 const accessToken = sign({Email: user.Email, UserID: user.UserID}, 'importantsecret')
-                res.json(accessToken);
-                
+                res.json({ token: accessToken, Email: Email, UserID: user.UserID });              
             }
         });
     }
