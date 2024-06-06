@@ -35,5 +35,11 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'OrderDetail',
         timestamps: false
     });
+
+    OrderDetail.associate = models => {
+        OrderDetail.hasMany(models.ProductItem, { foreignKey: 'ProductItemID' });
+        OrderDetail.hasMany(models.Order, { foreignKey: 'OrderID' });
+    };
+
     return OrderDetail;
 }

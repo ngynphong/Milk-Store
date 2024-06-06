@@ -23,5 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false
     });
 
+    Payment.associate = models => {
+        Payment.hasMany(models.User, { foreignKey: 'UserID' });
+    
+    }
+    
     return Payment;
 };

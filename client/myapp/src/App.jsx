@@ -34,7 +34,7 @@ function App() {
           element:<Vieworder/>
         },
         {
-          path: "/productItem/:ProductItemId",
+          path: "/product/:ProductID",
           element: <Product/>,  
         }
 
@@ -60,10 +60,7 @@ function App() {
       path: "/promotion-management",
       element: <PromotionManagement/>
     },
-    {
-      path:"/vieworder",
-      element:<Vieworder/>
-    },
+   
     {
       path:"/profile",
       element:<Profile/>

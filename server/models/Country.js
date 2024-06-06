@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'Country',
         timestamps: false
     });
+    
+    Country.associate = models => {
+        Country.hasMany(models.Company, { foreignKey: 'CountryID' });
+      };
+    
 
     return Country;
 };
