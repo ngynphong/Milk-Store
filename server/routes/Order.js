@@ -18,4 +18,20 @@ router.get('/:OrderID', async (req, res) => {
     const order = await Order.findByPk(orderID);
     res.json(order);
 });
+
+router.put('/:OrderID', async (req, res) => {
+    const orderID = req.params.OrderID;
+    const updatedData = req.body;
+    await Order.update(updatedData, { where: { OrderID: orderID } });
+    const updatedOrder = await order.findByPk(orderID);
+    res.json(updatedOrder);
+});
+
+
+router.delete('/:OrderID', async (req, res) => {
+    const orderID = req.params.OrderID;
+    await Order.destroy({ where: { OrderID: orderID } });
+    res.json({ message: 'Order item deleted successfully' });
+});
+
 module.exports = router;
