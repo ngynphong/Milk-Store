@@ -1,14 +1,14 @@
-import { Link , useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "./index.scss";
 function Body() {
 
     let navigate = useNavigate();
-    const [listOfProductItem, setListOfProductItem] = useState([]);
+    const [listOfProduct, setListOfProduct] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:3001/productItem').then((response) => {
-            setListOfProductItem(response.data);
+        axios.get('http://localhost:3001/product').then((response) => {
+            setListOfProduct(response.data);
         })
 
 
@@ -21,10 +21,10 @@ function Body() {
                     <h1>Ưu Đãi Theo SET 1 </h1>
                 </div>
                 <div className="body__1__product">
-                    {listOfProductItem.map((value, key) => {
+                    {listOfProduct.map((value, key) => {
                         return (
                             <div key={key} onClick={() => {
-                                navigate(`/productItem/${value.ProductItemID}`);
+                                navigate(`/product/${value.ProductID}`);
                             }}>
                                 <div >
                                     <img src={value.ImgProduct}
@@ -71,7 +71,7 @@ function Body() {
                     </div> */}
                 </div>
             </div>
-            <div className="body__background2">
+            {/* <div className="body__background2">
                 <div className="body">
                     <h1>Ưu Đãi Theo SET 2 </h1>
                 </div>
@@ -160,9 +160,9 @@ function Body() {
                         <div>
                             <button>MUA NGAY</button>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div> */}
+                {/* </div> */}
+            {/* </div> */}
         </div>
     )
 }

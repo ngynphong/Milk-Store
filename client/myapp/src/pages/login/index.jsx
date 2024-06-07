@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext  } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./login.scss";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Login() {
 
@@ -9,6 +10,7 @@ function Login() {
     const [Password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const { setAuthState } = useContext(AuthContext);
 
     let navigate = useNavigate();
 
@@ -42,7 +44,15 @@ function Login() {
                 if (response.data.error) {
                     alert(response.data.error)
                 } else {
-                    sessionStorage.setItem('accessToken', response.data);
+                    localStorage.setItem("accessToken", response.data.token);
+                    setAuthState({
+                        Email: response.data.Email,
+                        FullName: response.data.FullName,
+                        UserID: response.data.UserID,
+                        Age: response.data.Age,
+                        Address: response.data.Address,
+                        status: true,
+                    });
                     navigate('/');
                 }
             })
@@ -83,7 +93,7 @@ function Login() {
                             <label>
                                 <input type="checkbox" />Ghi nhớ mật khẩu
                             </label>
-                            <a href="/forgotpassword">Quên mật khẩu?</a>
+                            <a href="#">Quên mật khẩu?</a>
                         </div>
                         <button className="login-button" onClick={login}>Login</button>
                         <div className="register-link">

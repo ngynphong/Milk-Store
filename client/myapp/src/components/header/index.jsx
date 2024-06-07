@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { SearchOutlined, UserOutlined, ShoppingCartOutlined, CloseOutlined } from '@ant-design/icons';
 import "./index.scss";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -8,22 +9,22 @@ import axios from "axios";
 function Header() {
 
     const [isOpenSearch, setIsOpenSearch] = useState(false);
- 
+    const navigate = useNavigate();
     const [authState, setAuthState] = useState({
         Email: "",
         UserID: 0,
         status: false,
-});
+    });
 
     useEffect(() => {
         axios
             .get(`http://localhost:3001/auth/auth`, {
                 headers: {
-                    accessToken: sessionStorage.getItem("accessToken"),
+                    accessToken: localStorage.getItem("accessToken"),
                 },
             })
             .then((response) => {
-                console.log(response.data); 
+                console.log(response.data);
                 if (response.data.error) {
                     setAuthState({ ...authState, status: false });
                 } else {
@@ -39,7 +40,7 @@ function Header() {
     }, []);
 
     const logout = () => {
-        sessionStorage.removeItem("accessToken");
+        localStorage.removeItem("accessToken");
         setAuthState({ Email: "", UserID: 0, status: false });
     };
 
@@ -70,7 +71,7 @@ function Header() {
                             </li>
 
                             <li>
-                                <Link to="/milk-management">Quản lý sữa {authState.FullName}</Link>
+                                <Link to="/milk-management">Quản lý sữa</Link>
                             </li>
                         </div>
                         <div className="header__icon">
@@ -83,39 +84,40 @@ function Header() {
                                 </li>
                             </Link>
                             <li className="header__userdropdow">
-                            {authState.status && (
-                                <li>
-                                     {authState.FullName}
-                                </li>
-                            )}
-                                <UserOutlined /> 
+
+                                <UserOutlined />
                                 <ul className="userdropdow">
-                                    {/* <li>{authState.FullName} </li> */}
+                                    <li>{authState.status && (
+                                        <li>
+                                            {authState.FullName}
+                                        </li>
+                                    )}</li>
+                                    <hr />
                                     <Link to="/vieworder">
                                         <li>Xem đơn</li>
                                     </Link>
                                     <hr />
-                                    <Link to="/profile/:UserID">
-                                        <li>Hồ sơ của tôi</li>
-                                    </Link>
-                                    <hr />
-                                    {/* <Link to="/login">
-                                        <li>Đăng Nhập</li>
-                                    </Link> */}
-                                    {!authState.status && (
-                                        <>
+                                    {authState.status ?
+                                        <div >
+                                            <li onClick={() => {
+                                                navigate(`/profile/${authState.UserID}`);
+                                            }} >Profile</li>
+                                            <hr />
+                                            <li>{authState.status && <button onClick={logout}> Đăng Xuất</button>}</li>
+                                        </div>
+
+                                        : <>
                                             <Link to="/login">
                                                 <li>Đăng Nhập</li>
                                             </Link>
+                                            <hr />
                                             <Link to="/register">
                                                 <li>Đăng Ký</li>
                                             </Link>
                                         </>
-                                    )}
-                                    {/* <Link to="/logout"> */}
-                                     <li>{authState.status && <button onClick={logout}> Đăng Xuất</button>}</li>                                      
-                                    {/* </Link> */}
-                                    
+                                    }
+                                    <hr />
+
                                 </ul>
                             </li>
                         </div>
