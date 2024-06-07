@@ -12,6 +12,7 @@ import PromotionManagement from"./pages/promotion-management"
 import Profile from "./pages/profile";
 import Vieworder from "./pages/vieworder";
 import Forgotpassword from "./pages/forgotpassword";
+import Editpassword from "./pages/editpassword";
 
 function App() {
 
@@ -68,6 +69,10 @@ function App() {
     {
       path:"/forgotpassword",
       element:<Forgotpassword/>
+    },
+    {
+      path:"/editpassword",
+      element:<Editpassword/>
     },
 
      

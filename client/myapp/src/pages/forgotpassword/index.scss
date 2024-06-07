@@ -36,7 +36,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 14px;
-      border: 1px solid red;
+      // border: 1px solid red;
 
       &:focus {
         border-color: #3498db;
@@ -44,7 +44,7 @@
         box-shadow: 0 0 5px #3498db;
       }
     }
-
+    
     .error {
 
       color: red;
