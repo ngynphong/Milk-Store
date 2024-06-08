@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Product, ProductItem, BrandMilk,Company} = require('../models');
+const {Company} = require('../models');
 
 router.get('/', async (req, res) => {
     const listCompany = await Company.findAll();
@@ -15,7 +15,7 @@ router.post('/',async (req, res) => {
 
 router.get('/:CompanyID', async (req, res) => {
     const companyID = req.params.CompanyID;
-    const company = await Product.findByPk(companyID);
+    const company = await Company.findByPk(companyID);
     res.json(company);
 });
 
@@ -31,8 +31,8 @@ router.put('/:CompanyID', async (req, res) => {
 
 router.delete('/:CompanyID', async (req, res) => {
     const companyID = req.params.CompanyID;
-    await Product.destroy({ where: { CompanyID: companyID } });
-    res.json({ message: 'Product item deleted successfully' });
+    await Company.destroy({ where: { CompanyID: companyID } });
+    res.json({ message: 'Company item deleted successfully' });
 });
 
 module.exports = router;

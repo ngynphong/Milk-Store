@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Product,ProductItem, BrandMilk,Company,AgeRange,Category} = require('../models');
+const {Category} = require('../models');
 
 router.get('/', async (req, res) => {
     const listCategory = await Category.findAll();
@@ -15,7 +15,23 @@ router.post('/',async (req, res) => {
 
 router.get('/:CategoryID', async (req, res) => {
     const categoryID = req.params.CategoryID;
-    const category = await Product.findByPk(categoryID);
+    const category = await Category.findByPk(categoryID);
     res.json(category);
+}); 
+
+router.put('/:CategoryID', async (req, res) => {
+    const categoryID = req.params.CategoryID;
+    const updatedData = req.body;
+    await Category.update(updatedData, { where: { CategoryID: categoryID } });
+    const updatedCategory = await Category.findByPk(categoryID);
+    res.json(updatedCategory);
 });
+
+
+router.delete('/:CategoryID', async (req, res) => {
+    const categoryID = req.params.CategoryID;
+    await Category.destroy({ where: { CategoryID: categoryID } });
+    res.json({ message: 'Category item deleted successfully' });
+});
+
 module.exports = router;

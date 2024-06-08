@@ -9,7 +9,7 @@ function Register() {
     let navigate = useNavigate();
 
     const initialValues = {
-        Role: 2,
+        RoleID: 2,
         Email: "",
         Password: "",
         ConfirmPassword: "",
@@ -50,7 +50,7 @@ function Register() {
                         <Form className="register__form">
                             <h1>Đăng kí</h1>
                             <div className="input-box">
-                                <Field type="hidden" name="Role" value={2} />
+                                <Field type="hidden" name="RoleID" value={2} />
                             </div>
                             <div className="input-box">
                                 <Field type="email" name="Email" placeholder="Email của bạn" />

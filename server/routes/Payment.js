@@ -15,8 +15,23 @@ router.post('/',async (req, res) => {
 
 router.get('/:PaymentID', async (req, res) => {
     const paymentID = req.params.PaymentID;
-    const payment = await Product.findByPk(paymentID);
+    const payment = await Payment.findByPk(paymentID);
     res.json(payment);
 });
+
+router.put('/:PaymentID', async (req, res) => {
+    const paymentID = req.params.PaymentID;
+    const updatedData = req.body;
+    await Payment.update(updatedData, { where: { PaymentID: paymentID } });
+    const updatedPayment = await Payment.findByPk(paymentID);
+    res.json(updatedPayment);
+});
+
+
+router.delete('/:PaymentID', async (req, res) => {
+     const paymentID = req.params.PaymentID;
+     await Payment.destroy({ where: { PaymentID: paymentID } });
+     res.json({ message: 'Payment item deleted successfully' });
+ });
 
 module.exports = router;
