@@ -11,15 +11,13 @@ import Product from "./pages/product";
 import PromotionManagement from "./pages/promotion-management"
 import Profile from "./pages/profile";
 import Vieworder from "./pages/vieworder";
-<<<<<<< HEAD
+
 import Forgotpassword from "./pages/forgotpassword";
 import Editpassword from "./pages/editpassword";
-
-=======
 import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
->>>>>>> eca2d94d3f95431207d5fcaff147161be5a8b2f3
+
 function App() {
 
   const [authState, setAuthState] = useState({
@@ -89,6 +87,10 @@ function App() {
       element: <Register />
     },
     {
+      path: "/forgotpassword",
+      element: <Forgotpassword />
+    },
+    {
       path: "/promotion-management",
       element: <PromotionManagement />
     },
@@ -101,8 +103,8 @@ function App() {
       element: <Profile />
     },
     {
-      path:"/editpassword",
-      element:<Editpassword/>
+      path: "/editpassword",
+      element: <Editpassword />
     },
 
 
