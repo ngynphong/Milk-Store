@@ -16,13 +16,28 @@ function Header() {
         status: false,
     });
 
+    const [searchQuery, setSearchQuery] = useState("");
+    const [productData, setProductData] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
     useEffect(() => {
-        axios
-            .get(`http://localhost:3001/auth/auth`, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken"),
-                },
+
+        // Fetch product data
+        axios.get(`http://localhost:3001/product`)
+            .then((response) => {
+                setProductData(response.data);
+                setFilteredProducts(response.data);
             })
+            .catch((error) => {
+                console.error("Error fetching product data:", error);
+            });
+
+        // fetch auth  
+        axios.get(`http://localhost:3001/auth/auth`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
             .then((response) => {
                 console.log(response.data);
                 if (response.data.error) {
@@ -39,6 +54,19 @@ function Header() {
             });
     }, []);
 
+    // Function to handle search
+    useEffect(() => {
+        const filteredProducts = productData.filter(Product =>
+            Product.ProductName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredProducts(filteredProducts);
+    }, [searchQuery, productData]);
+
+    const handleSearch = (value) => {
+        setSearchQuery(value);
+    };
+
+    // logout function 
     const logout = () => {
         localStorage.removeItem("accessToken");
         setAuthState({ Email: "", UserID: 0, status: false });
@@ -73,6 +101,7 @@ function Header() {
                             <li>
                                 <Link to="/milk-management">Quản lý sữa</Link>
                             </li>
+
                         </div>
                         <div className="header__icon">
                             <li onClick={() => setIsOpenSearch(true)}>
@@ -124,8 +153,31 @@ function Header() {
                     </ul>
                 </nav>
                 <div className={`header__search ${isOpenSearch ? "active" : " "}`}>
-                    <input type="text" placeholder="Search a milk..." />
-                    <CloseOutlined onClick={() => setIsOpenSearch(false)} />
+                    <div className="row">
+                    <input
+                        type="text"
+                        placeholder="Search a milk..."
+                        value={searchQuery}
+                        onChange={(e) => handleSearch(e.target.value)}
+                    />
+                    <CloseOutlined onClick={() => {
+                        setIsOpenSearch(false);
+                        setSearchQuery("");
+                        setFilteredProducts([]);
+                    }} />
+                    </div>
+                    
+                    {searchQuery  && (
+                        <ul className="search-results">
+                            {filteredProducts.map(product => (
+                                <li key={product.ProductID}>
+                                    <Link to={`/product/${product.ProductID}`}>{product.ProductName}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+                    
                 </div>
             </AuthContext.Provider>
         </header>
