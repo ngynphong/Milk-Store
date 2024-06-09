@@ -22,7 +22,7 @@ const ProfileForm = () => {
           console.error('There was an error fetching the profile data!', error);
         });
     // }
-  }, []);
+  }, [UserID]);
 
 
 

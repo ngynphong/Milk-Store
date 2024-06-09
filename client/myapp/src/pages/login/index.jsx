@@ -93,7 +93,7 @@ function Login() {
                             <label>
                                 <input type="checkbox" />Ghi nhớ mật khẩu
                             </label>
-                            <a href="/editpassword">Quên mật khẩu?</a>
+                            <a href="/forgotpassword">Quên mật khẩu?</a>
                         </div>
                         <button className="login-button" onClick={login}>Login</button>
                         <div className="register-link">

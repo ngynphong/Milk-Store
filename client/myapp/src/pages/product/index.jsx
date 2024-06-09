@@ -16,6 +16,7 @@ function Product() {
   const [productObject, setProductObject] = useState({});
   // const [productItem, setProductItem] = useState({});
   // const [brandMilkObject, setbrandMilkObject] = useState({});
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/product/${ProductID}`).then((response) => {
@@ -28,6 +29,11 @@ function Product() {
     // });
 
   },[ProductID]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    console.log("Cart:", cart);
+  };
 
   return (
     <div>
@@ -88,7 +94,7 @@ function Product() {
           <h1>{productObject.ProductName}</h1>
           <span>{productObject.Price}</span>
           <div className="swiper__button">
-            <button>Thêm giỏ hàng</button>
+            <button onClick={() => addToCart(productObject)}>Thêm giỏ hàng</button>
             <button>Mua Ngay</button>
           </div>
         </div>
@@ -100,12 +106,12 @@ function Product() {
         <div className="info__table">
           <tbody>
             <tr>
+              <td>Tên sản phẩm</td>
               <td>{productObject.ProductName}</td>
-              {/* <td>Thực phẩm bổ sung cho trẻ 2-6 tuổi: Similac 4</td> */}
             </tr>
             <tr>
               <td>Thương hiệu</td>
-              {/* <td>{productItemObject.BrandMilk && productItemObject.BrandMilk.name}</td> */}
+              <td>{productObject.BrandMilk && productObject.BrandMilk.name}</td>
             </tr>
             <tr>
               <td>Xuất xứ thương hiệu</td>

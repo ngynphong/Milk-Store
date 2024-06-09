@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import axios from 'axios';
+// import { useParams } from 'react-router-dom';
 import './index.scss';
 
 const Forgotpassword = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
+    
+    // axios.put(`http://localhost:3001/auth/forgotpassword`).then((response) => {
+
+    //     setEmail(response.data);
+    // });
 
     const handleSubmit = (event) => {
         event.preventDefault();

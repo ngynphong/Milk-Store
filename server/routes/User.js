@@ -11,6 +11,22 @@ router.get('/', async (req, res) => {
     res.json(listUser);
 });
 
+//forget password
+router.put('/forgotpassword', async (req, res) => {
+    const { Email, Password } = req.body;
+    
+    bcrypt.hash(Password, 10).then((hash) => {    
+        User.update({Password: hash}, {where: {Email: Email}}, {
+            attributes: { exclude: ["FullName", "RoleID", "Age", "Address"] },
+        });
+    });
+    // await 
+    const updateUser = await User.findOne(Email);
+    
+    res.json(updateUser);
+
+});
+
 //Update profile
 router.put('/profile/:UserID', async (req, res) => {
     const userID = req.params.UserID;
@@ -77,5 +93,15 @@ router.post('/login', async (req, res) => {
     }
 
 });
+
+// Routes
+// router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// router.get('/auth/google/callback', 
+//     passport.authenticate('google', { failureRedirect: '/' }),
+//     (req, res) => {
+//         res.redirect('/profile');
+//     }
+// );
 
 module.exports = router
