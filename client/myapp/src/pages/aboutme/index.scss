@@ -1,6 +1,7 @@
 .about{
     margin-top: 120px;
-    
+    font-size: 16px;
+    font-weight: normal;
   }
     .section {
       padding:0px;
@@ -9,29 +10,35 @@
               width: 100vw;
               height: 60vh;
           }
-          .numone{
-              text-align: center;
-              h3{
-                  padding: 30px 150px 30px 150px;
-              }
-          }
+          
       }
       &.numbertwo {
           margin-top: 20px;
           display: flex;
         
-          img {
-            margin: 0;
-            width: 100%;
-            height: auto;
-            margin-left: 90px;
-          }
+          
           .numtow{
               margin-top: 80px;
               text-align: center;
               h3{
                   padding: 30px 150px 30px 150px;
+                  font-weight: normal;
               }  
+              button {
+
+                padding: 5px 10px;
+                ;
+                background-color: #1b82e9;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+        
+                &:hover {
+                  background-color: #778491;
+                }
+              }
           }
         }
         &.numberthree{
@@ -51,7 +58,7 @@
               margin-top: 20px;
               margin-bottom: 20px;
               text-align: left;
-              
+              font-weight: normal;
             }
           }
           
@@ -72,6 +79,7 @@
                 margin-top: 25px;
               margin-left: 50px;
               margin-bottom: 50px;
+              font-weight: normal;
               }
           }
       }

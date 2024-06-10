@@ -17,6 +17,7 @@ import Editpassword from "./pages/editpassword";
 import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Aboutme from "./pages/aboutme";
 
 function App() {
 
@@ -64,9 +65,13 @@ function App() {
           element: <Promotion />
         },
         {
+          path: "/abouttme",
+          element: <Aboutme/>
+        },
+        {
           path: "/product/:ProductID",
           element: <Product />,
-        }
+        },
 
       ]
     },
@@ -98,6 +103,7 @@ function App() {
       path: "/vieworder",
       element: <Vieworder />
     },
+    
     {
       path: "/profile/:UserID",
       element: <Profile />

@@ -67,7 +67,7 @@ function Header() {
                                 <Link to="/promotion">Khuyến mãi</Link>
                             </li>
                             <li>
-                                <Link to="/">Về chúng tôi</Link>
+                                <Link to="/abouttme">Về chúng tôi</Link>
                             </li>
 
                             <li>
