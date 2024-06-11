@@ -37,6 +37,8 @@ function Login() {
         return isValid;
     };
 
+    const adminRole = 2;
+
     const login = () => {
         if (validate()) {
             const data = { Email: Email, Password: Password }
@@ -53,7 +55,13 @@ function Login() {
                         Address: response.data.Address,
                         status: true,
                     });
-                    navigate('/');
+                    // console.log(response.data.RoleID);
+                    if(response.data.RoleID !== adminRole){
+                        navigate('/');
+                    } else {
+                        navigate('/adminHomePage');
+                    }
+                    
                 }
             })
         }
@@ -96,6 +104,7 @@ function Login() {
                             <a href="/forgotpassword">Quên mật khẩu?</a>
                         </div>
                         <button className="login-button" onClick={login}>Login</button>
+                        
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
                                 <Link to="/register">

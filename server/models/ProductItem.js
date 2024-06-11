@@ -13,9 +13,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-        Quantity: {
-            type: DataTypes.INTEGER
-        },
         ImgProduct: {
             type: DataTypes.STRING
         },

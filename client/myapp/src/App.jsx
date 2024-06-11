@@ -18,6 +18,9 @@ import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+// import HeaderAdmin from "./components/header-admin";
+import AdminHomePage from "./pages/home/AdminHomePage";
+
 
 function App() {
 
@@ -53,6 +56,7 @@ function App() {
 
   const router = createBrowserRouter([
 
+
     {
       path: "/",
       element: <Layout />,
@@ -71,10 +75,26 @@ function App() {
 
       ]
     },
+
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/adminHomePage",
+          element: <AdminHomePage />,
+        },
+      ]
+    },
+
     {
       path: "/milk-management",
       element: <MilksManagement />,
     },
+    // {
+    //   path: "/header-admin",
+    //   element: <HeaderAdmin />,
+    // },
     {
       path: "/cart",
       element: <Cart />
