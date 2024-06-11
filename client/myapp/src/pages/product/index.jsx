@@ -35,6 +35,24 @@ function Product() {
     console.log("Cart:", cart);
   };
 
+  const submitaddToCart = (e) =>{
+    e.preventDefault();
+
+    const data ={
+      ProductID : ProductID,
+     }
+
+    axios.post(`http://localhost:3001/Cart`,data).then(res => {
+          if(res.data.status === 201){
+            swal("Success",res.data.message,"success");
+          } else if(res.data.status === 409){
+            swal("Warning",res.data.message,"warning");
+          } else if(res.data.status === 401){
+            swal("Error",res.data.message,"error");
+            }
+     });
+}
+
   return (
     <div>
       <div className="swiper__product">
@@ -94,7 +112,8 @@ function Product() {
           <h1>{productObject.ProductName}</h1>
           <span>{productObject.Price}</span>
           <div className="swiper__button">
-            <button onClick={() => addToCart(productObject)}>Thêm giỏ hàng</button>
+          <button onClick={ submitaddToCart }>Thêm giỏ hàng</button>
+            {/* <button onClick={() => addToCart(productObject)}>Thêm giỏ hàng</button> */}
             <button>Mua Ngay</button>
           </div>
         </div>
