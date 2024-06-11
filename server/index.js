@@ -51,6 +51,10 @@ app.use('/productItem', ProductItemRouter);
 const roleRouter = require('./routes/Role');
 app.use('/role', roleRouter);
 
+//Router Cart
+const CartRouter = require('./routes/Cart');
+app.use('/cart', CartRouter);
+
 // app.use(
 //     cookieSession({
 //         name: 'Session',
