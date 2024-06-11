@@ -1,61 +1,32 @@
-import { useState, useContext  } from 'react';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import "./login.scss";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './login.scss';
 
 function Login() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
 
-    const [Email, setEmail] = useState("");
-    const [Password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const { setAuthState } = useContext(AuthContext);
-
-    let navigate = useNavigate();
-
-    const validate = () => {
-        let isValid = true;
-
-        if (!Email) {
-            setEmailError("Email không được để trống");
-            isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(Email)) {
-            setEmailError("Email không hợp lệ");
-            isValid = false;
-        } else {
-            setEmailError("");
+    const validateForm = () => {
+        const newErrors = {};
+        if (!username) {
+            newErrors.username = 'Username is required';
         }
-
-        if (!Password) {
-            setPasswordError("Mật khẩu không được để trống");
-            isValid = false;
-        } else {
-            setPasswordError("");
+        if (!password) {
+            newErrors.password = 'Password is required';
         }
-
-        return isValid;
+        return newErrors;
     };
 
-    const login = () => {
-        if (validate()) {
-            const data = { Email: Email, Password: Password }
-            axios.post('http://localhost:3001/auth/login', data).then((response) => {
-                if (response.data.error) {
-                    alert(response.data.error)
-                } else {
-                    localStorage.setItem("accessToken", response.data.token);
-                    setAuthState({
-                        Email: response.data.Email,
-                        FullName: response.data.FullName,
-                        UserID: response.data.UserID,
-                        Age: response.data.Age,
-                        Address: response.data.Address,
-                        status: true,
-                    });
-                    navigate('/');
-                }
-            })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length === 0) {
+            // Submit the form
+            console.log('Form submitted successfully');
+            // You can also handle form submission here
+        } else {
+            setErrors(formErrors);
         }
     };
 
@@ -63,7 +34,7 @@ function Login() {
         <div>
             <div className="header__login">
                 <Link to="/">
-                    <img src="logo.png" alt="" width={200} />
+                    <img src="logo.png" alt="Logo" width={200} />
                 </Link>
                 <div>
                     <h1>Đăng Nhập</h1>
@@ -71,41 +42,40 @@ function Login() {
             </div>
             <div className="login-container">
                 <div className="login-wrapper">
-                    <h1>Đăng nhập</h1>
-                    <div className="login-form">
-                        <input
-                            className={`input-group ${emailError ? 'error' : ''}`}
-                            placeholder="Email"
-                            type="text"
-                            onChange={(event) => { setEmail(event.target.value) }}
-                        />
-                        {emailError && <p className="error-message">{emailError}</p>}
-                        <br />
-                        <input
-                            className={`input-group ${passwordError ? 'error' : ''}`}
-                            placeholder="Your password"
-                            type="password"
-                            onChange={(event) => { setPassword(event.target.value) }}
-                        />
-                        {passwordError && <p className="error-message">{passwordError}</p>}
-                        <br />
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <h1>Đăng nhập</h1>
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                            {errors.username && <p className="error">{errors.username}</p>}
+                        </div>
+                        <div className="input-group">
+                            <input
+                                type="password"
+                                placeholder="Your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            {errors.password && <p className="error">{errors.password}</p>}
+                        </div>
                         <div className="remember-forgot">
                             <label>
-                                <input type="checkbox" />Ghi nhớ mật khẩu
+                                <input type="checkbox" /> Ghi nhớ mật khẩu
                             </label>
-                            <a href="/forgotpassword">Quên mật khẩu?</a>
+                            <Link to="/forgotpassword">Quên mật khẩu?</Link>
                         </div>
-                        <button className="login-button" onClick={login}>Login</button>
+                        <button className="login-button" type="submit">Đăng nhập</button>
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
-                                <Link to="/register">
-                                    <a>
-                                        Đăng ký
-                                    </a>
-                                </Link>
+                                <Link to="/register">Đăng ký</Link>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

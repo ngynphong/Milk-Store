@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { SearchOutlined, UserOutlined} from '@ant-design/icons';
 import "./index.scss";
-function Header() {
+function HeaderAdmin() {
 
 
 
     return (
-        <header className="header">
+        <header className="header-admin">
             <div className="header__logo">
                 <Link to="/">
                     <img src="logo.png"
@@ -41,10 +41,11 @@ function Header() {
                     </div>
                 </ul>
             </nav>
+            
         </header>
     )
 
 
 }
 
-export default Header;
+export default HeaderAdmin;

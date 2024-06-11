@@ -65,14 +65,9 @@ button {
     }
 }
 
-.save {
-    text-align: center;
-}
-
 button[type="submit"] {
     background-color: #007bff;
     color: #fff;
-
 
     &:disabled {
         background-color: #ccc;
@@ -80,11 +75,13 @@ button[type="submit"] {
     }
 }
 
-
+button[type="button"] {
+    background-color: #6c757d;
+    color: #fff;
+}
 
 .login-link {
     text-align: center;
-
     margin-top: 20px;
 
     a {

@@ -29,9 +29,10 @@ function Aboutme() {
         <div className="font numtow">
           <h1>GIỚI THIỆU CHUNG</h1>
           <h3>
-            HAPPY MOTHER & BABY được thành lập với sứ mệnh mang đến dinh dưỡng tốt nhất cho mẹ bầu và bé yêu, giúp mỗi gia đình có một khởi đầu khỏe mạnh và hạnh phúc.
+            HAPPY MOTHER & BABY được thành lập với sứ mệnh mang đến dinh dưỡng tốt nhất cho mẹ bầu và bé yêu. 
+            Với cam kết chất lượng và an toàn, chúng tôi mong muốn mang đến sự chăm sóc tốt nhất, tạo nên nền tảng vững chắc cho sự phát triển toàn diện của trẻ và sức khỏe của mẹ 
+            giúp mỗi gia đình có một khởi đầu khỏe mạnh và hạnh phúc.
           </h3>
-          <button>Xem thêm</button>
         </div>
       </div>
 
@@ -42,7 +43,7 @@ function Aboutme() {
           <h3>An Toàn: Tất cả sản phẩm đều được kiểm định và chứng nhận an toàn.</h3>
           <h3>Tận Tâm: Mỗi khách hàng đều được phục vụ với sự tận tâm và chu đáo nhất.</h3>
           <h3>Sáng Tạo: Luôn đổi mới để mang đến sản phẩm và dịch vụ tốt nhất.        </h3>
-          <button>Xem thêm</button>
+        
         </div>
         <img
           src="https://www.anmum.com/content/dam/anmum_global/anmumwebsite/MY/Parenting-and-Header/Articles-Image/Motherhood/Motherhood_Landing_article.jpg"
