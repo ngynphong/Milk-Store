@@ -3,8 +3,20 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./login.scss";
 import { AuthContext } from "../../contexts/AuthContext";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../../conflig/firebase';
 
 function Login() {
+    const handelLoginGoogle = () => {
+        signInWithPopup(auth, googleProvider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    console.log(credential);
+  }).catch((error) => {
+   console.log(error);
+  });
+    }
 
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
@@ -96,6 +108,14 @@ function Login() {
                             <a href="/editpassword">Quên mật khẩu?</a>
                         </div>
                         <button className="login-button" onClick={login}>Login</button>
+                        <button className='login-google' onClick={handelLoginGoogle}>
+                            <img
+                             src="https://th.bing.com/th/id/OIP.IcreJX7hnOjNYRnlo4DCWwHaE8?rs=1&pid=ImgDetMain"
+                             alt=""
+                             width={30} 
+                             />
+                             <span>Đăng nhập với Google</span>
+                         </button>
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
                                 <Link to="/register">
@@ -113,3 +133,5 @@ function Login() {
 }
 
 export default Login;
+
+
