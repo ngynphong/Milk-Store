@@ -3,9 +3,14 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
 import "./product1.scss";
+<<<<<<< HEAD
 import axios from "axios";
 import swal from "sweetalert";
 import { useParams } from "react-router-dom";
+=======
+import swal from 'sweetalert';
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
 function Product() {
 
   let { ProductID } = useParams();
@@ -20,6 +25,24 @@ function Product() {
     });
   },[ProductID]);
 
+
+  const submitaddToCart = (e) =>{
+    e.preventDefault();
+
+    const data ={
+      ProductID : ProductID,
+     }
+
+    axios.post(`http://localhost:3001/Cart`,data).then(res => {
+          if(res.data.status === 201){
+            swal("Success",res.data.message,"success");
+          } else if(res.data.status === 409){
+            swal("Warning",res.data.message,"warning");
+          } else if(res.data.status === 401){
+            swal("Error",res.data.message,"error");
+            }
+     });
+}
 
   const submitaddToCart = (e) =>{
     e.preventDefault();
@@ -99,7 +122,23 @@ function Product() {
           <button onClick={submitaddToCart}>Thêm giỏ hàng</button>
           <button>Mua Ngay</button>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+
+        <div className="swiper__info">
+
+          <h1>{productObject.ProductName}</h1>
+          <span>{productObject.Price}</span>
+          <div className="swiper__button">
+          <button onClick={ submitaddToCart }>Thêm giỏ hàng</button>
+            {/* <button onClick={() => addToCart(productObject)}>Thêm giỏ hàng</button> */}
+            <button>Mua Ngay</button>
+          </div>
+        </div>
+
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
       </div>
       <div className="info__detail">
         <h1>Chi tiết sản phẩm</h1>

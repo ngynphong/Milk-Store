@@ -86,8 +86,8 @@ router.post('/login', async (req, res) => {
                 res.json({ error: 'Wrong Email or Password' });
             }
             else {
-                const accessToken = sign({ Email: user.Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address }, 'importantsecret')
-                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address });
+                const accessToken = sign({ Email: user.Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address, RoleID: user.RoleID }, 'importantsecret')
+                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address, RoleID: user.RoleID });
             }
         });
     }

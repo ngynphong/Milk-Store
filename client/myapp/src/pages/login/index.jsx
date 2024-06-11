@@ -18,6 +18,7 @@ function Login() {
         return newErrors;
     };
 
+<<<<<<< HEAD
     const handleSubmit = (e) => {
         e.preventDefault();
         const formErrors = validateForm();
@@ -27,6 +28,35 @@ function Login() {
             // You can also handle form submission here
         } else {
             setErrors(formErrors);
+=======
+    const adminRole = 1;
+
+    const login = () => {
+        if (validate()) {
+            const data = { Email: Email, Password: Password }
+            axios.post('http://localhost:3001/auth/login', data).then((response) => {
+                if (response.data.error) {
+                    alert(response.data.error)
+                } else {
+                    localStorage.setItem("accessToken", response.data.token);
+                    setAuthState({
+                        Email: response.data.Email,
+                        FullName: response.data.FullName,
+                        UserID: response.data.UserID,
+                        Age: response.data.Age,
+                        Address: response.data.Address,
+                        status: true,
+                    });
+                    // console.log(response.data.RoleID);
+                    if(response.data.RoleID !== adminRole){
+                        navigate('/');
+                    } else {
+                        navigate('/adminHomePage');
+                    }
+                    
+                }
+            })
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
         }
     };
 
@@ -69,7 +99,12 @@ function Login() {
                             </label>
                             <Link to="/forgotpassword">Quên mật khẩu?</Link>
                         </div>
+<<<<<<< HEAD
                         <button className="login-button" type="submit">Đăng nhập</button>
+=======
+                        <button className="login-button" onClick={login}>Login</button>
+                        
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
                                 <Link to="/register">Đăng ký</Link>

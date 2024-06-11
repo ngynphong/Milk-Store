@@ -1,13 +1,25 @@
 import { Button, Form, Image, Input, Modal, Popconfirm, Select, Table, Upload } from "antd";
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import { useEffect, useState, useContext } from "react";
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
 import "./index.scss";
 import axios from "axios";
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from "../../utils/upload";
+<<<<<<< HEAD
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
 import HeaderAdmin from "../../components/header-admin";
 
+=======
+import { AuthContext } from "../../contexts/AuthContext";
+// import TextArea from "antd/es/input/TextArea";
+import { useForm } from "antd/es/form/Form";
+import { useNavigate } from "react-router-dom";
+import HeaderAdmin from "../../components/header-admin";
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
 
 
 function MilksManagement() {
@@ -17,6 +29,7 @@ function MilksManagement() {
   const [dataSource, setDataSource] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
+<<<<<<< HEAD
 
   const handleDeleteMilk = async (id) => {
     console.log("delete milk", id);
@@ -25,6 +38,53 @@ function MilksManagement() {
     setDataSource(listAfterDelete);
   };
 
+=======
+  const [currentProduct, setCurrentProduct] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [fileList, setFileList] = useState([]);
+
+  const handleDeleteMilk = async (ProductID) => {
+    console.log("delete milk", ProductID);
+    await axios.delete(`http://localhost:3001/product/${ProductID}`);
+    const listAfterDelete = dataSource.filter((Product) => Product.ProductID !== ProductID);
+    setDataSource(listAfterDelete);
+  };
+
+  const handleUpdateMilk = async (ProductID) => {
+    console.log("Update Milk", ProductID);
+    const productToUpdate = dataSource.find((Product) => Product.ProductID === ProductID);
+    console.log(productToUpdate);
+    setCurrentProduct(productToUpdate);
+    setEditing(true);
+    setIsOpen(true);
+    setFileList([{
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: productToUpdate.ImgProduct,
+    }]);
+
+    form.setFieldValue({
+      CategoryID: productToUpdate.CategoryID,
+      BrandID: productToUpdate.BrandID,
+      AgeRangeID: productToUpdate.AgeRangeID,
+      ProductName: productToUpdate.ProductName,
+      Price: productToUpdate.Price,
+      ImgProduct: {
+        fileList: [{
+          uid: '-1',
+          name: 'image.png',
+          status: 'done',
+          url: productToUpdate.ImgProduct,
+        }],
+      },
+    });
+
+
+  };
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
   const columns = [
     {
       title: "Movie name",
@@ -55,10 +115,13 @@ function MilksManagement() {
     },
   ];
 
+<<<<<<< HEAD
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState([]);
 
+=======
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -100,19 +163,37 @@ function MilksManagement() {
     const response = await axios.get('http://localhost:3001/productItem');
     setDataSource(response.data);
   }
+
   function handleShowModal() {
     setIsOpen(true);
   }
+
   function handleHideModal() {
     setIsOpen(false);
   }
 
   async function handleSubmit(values) {
     console.log(values);
+<<<<<<< HEAD
     console.log(values.img_product.file.originFileObj);
     const url = await uploadFile(values.img_product.file.originFileObj);
     values.img_product = url;
     console.log(values);
+=======
+    let url = '';
+
+    // Check if ImgProduct is defined and has a file property
+    if (values.ImgProduct && values.ImgProduct.file) {
+      url = await uploadFile(values.ImgProduct.file.originFileObj);
+      values.ImgProduct = url;
+    } else if (values.ImgProduct && values.ImgProduct.fileList && values.ImgProduct.fileList[0]?.url) {
+      url = values.ImgProduct.fileList[0].url;
+      values.ImgProduct = url;
+    } else if (currentProduct) {
+      // If no new image is selected, retain the existing image URL
+      values.ImgProduct = currentProduct.ImgProduct;
+    }
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
 
     const response = await axios.post('http://localhost:3001/productItem');
     setDataSource([...dataSource, values]);
@@ -131,11 +212,21 @@ function MilksManagement() {
   //khi nào mà cso async function thì phải viết function như thế này
   //function
   useEffect(() => {
+<<<<<<< HEAD
     fetchMovie();
+=======
+    
+    fetchProduct();
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
   }, []);
 
   return (
     <div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
       <HeaderAdmin />
       <div className="table">
         <Button type="primary" onClick={handleShowModal}>Add new milk</Button>
@@ -151,7 +242,11 @@ function MilksManagement() {
           <Form labelCol={{
             span: 24,
           }}
+<<<<<<< HEAD
             fomr={form}
+=======
+            form={form}
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
             onFinish={handleSubmit}
           >
             <Form.Item label="ID" name="id">
@@ -160,6 +255,7 @@ function MilksManagement() {
             <Form.Item label="Product name" name="name">
               <Input />
             </Form.Item>
+<<<<<<< HEAD
             <Form.Item label="Price" name="price">
               <Input />
             </Form.Item>
@@ -167,6 +263,10 @@ function MilksManagement() {
               <Input />
             </Form.Item>
             <Form.Item label="Image" name="img_product">
+=======
+
+            <Form.Item label="Image" name="ImgProduct">
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
               <Upload
                 action="http://localhost:3001/productItem"
                 listType="picture-card"
@@ -177,7 +277,14 @@ function MilksManagement() {
                 {fileList.length >= 8 ? null : uploatButton}
               </Upload>
             </Form.Item>
+<<<<<<< HEAD
             <Form.Item label="Desciption" name="desciption">
+=======
+            <Form.Item label="Quantity" name="Quantity" initialValue={currentProduct?.Quantity}>
+              <Input />
+            </Form.Item>
+            {/* <Form.Item label="Desciption" name="desciption">
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
               <TextArea rows={4} />
             </Form.Item>
             <Form.Item label="Brand" name="brand">
