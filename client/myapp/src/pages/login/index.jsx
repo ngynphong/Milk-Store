@@ -37,7 +37,7 @@ function Login() {
         return isValid;
     };
 
-    const adminRole = 2;
+    const adminRole = 1;
 
     const login = () => {
         if (validate()) {

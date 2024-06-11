@@ -191,28 +191,21 @@ function MilksManagement() {
 
 
   function handleOk() {
-    if (authState.UserID) {
-      form.submit();
-    }
-    console.log('Error')
+    form.submit();
   }
 
   //khi nào mà cso async function thì phải viết function như thế này
 
   //function
   useEffect(() => {
-    if (authState.UserID) {
-      fetchProduct();
-    } else {
-      // Redirect to login page if not authenticated
-      return navigate('/login');
-    }
+    
+    fetchProduct();
 
   }, []);
 
   return (
     <div>
-      
+
       <HeaderAdmin />
       <div className="table">
         <Button type="primary" onClick={handleShowModal}>Add New Milk</Button>
