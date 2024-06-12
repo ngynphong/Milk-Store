@@ -16,8 +16,12 @@ import Forgotpassword from "./pages/forgotpassword";
 import Editpassword from "./pages/editpassword";
 import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
-import Aboutme from "./pages/aboutme";
+// import HeaderAdmin from "./components/header-admin";
+import AdminHomePage from "./pages/home/AdminHomePage";
+import CustomerManagement from "./pages/customer-management";
+
 
 function App() {
 
@@ -53,6 +57,7 @@ function App() {
 
   const router = createBrowserRouter([
 
+
     {
       path: "/",
       element: <Layout />,
@@ -65,24 +70,46 @@ function App() {
           element: <Promotion />
         },
         {
-          path: "/abouttme",
-          element: <Aboutme/>
-        },
-        {
           path: "/product/:ProductID",
           element: <Product />,
+        },
+        {
+          path: "/profile/:UserID",
+          element: <Profile />
         },
 
       ]
     },
+
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/adminHomePage",
+          element: <AdminHomePage />,
+        },
+      ]
+    },
+
     {
       path: "/milk-management",
       element: <MilksManagement />,
     },
+    // {
+    //   path: "/header-admin",
+    //   element: <HeaderAdmin />,
+    // },
     {
       path: "/cart",
       element: <Cart />
     },
+
+    {
+      path: "/customer-manager",
+      element: <CustomerManagement/>
+    },
+
     {
       path: "/login",
       element: <Login />
@@ -103,11 +130,7 @@ function App() {
       path: "/vieworder",
       element: <Vieworder />
     },
-    
-    {
-      path: "/profile/:UserID",
-      element: <Profile />
-    },
+
     {
       path: "/editpassword",
       element: <Editpassword />

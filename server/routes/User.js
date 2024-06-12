@@ -5,6 +5,13 @@ const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { validateToken } = require('../middlewares/AuthMiddleware');
 
+// Delete a User  by ID
+router.delete('/:UserID', async (req, res) => {
+    const userID = req.params.UserID;
+    await User.destroy({ where: { UserID: userID } });
+    res.json({ message: 'User deleted successfully' });
+});
+
 
 router.get('/', async (req, res) => {
     const listUser = await User.findAll();
@@ -70,8 +77,8 @@ router.post('/login', async (req, res) => {
                 res.json({ error: 'Wrong Email or Password' });
             }
             else {
-                const accessToken = sign({ Email: user.Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address }, 'importantsecret')
-                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address });
+                const accessToken = sign({ Email: user.Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address, RoleID: user.RoleID }, 'importantsecret')
+                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address , RoleID: user.RoleID});
             }
         });
     }

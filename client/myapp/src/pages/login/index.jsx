@@ -1,5 +1,5 @@
 
-import { useState, useContext  } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./login.scss";
@@ -10,13 +10,13 @@ import { auth, googleProvider } from '../../conflig/firebase';
 function Login() {
     const handelLoginGoogle = () => {
         signInWithPopup(auth, googleProvider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    console.log(credential);
-  }).catch((error) => {
-   console.log(error);
-  });
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                console.log(credential);
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
     const [Email, setEmail] = useState('');
@@ -69,7 +69,7 @@ function Login() {
                         Address: response.data.Address,
                         status: true,
                     });
-                    // console.log(response.data.RoleID);
+                    console.log(response.data.RoleID);
                     if (response.data.RoleID !== adminRole) {
                         navigate('/');
                     } else {
@@ -122,12 +122,12 @@ function Login() {
                         <button className="login-button" onClick={login}>Login</button>
                         <button className='login-google' onClick={handelLoginGoogle}>
                             <img
-                             src="https://th.bing.com/th/id/OIP.IcreJX7hnOjNYRnlo4DCWwHaE8?rs=1&pid=ImgDetMain"
-                             alt=""
-                             width={30} 
-                             />
-                             <span>Đăng nhập với Google</span>
-                         </button>
+                                src="https://th.bing.com/th/id/OIP.IcreJX7hnOjNYRnlo4DCWwHaE8?rs=1&pid=ImgDetMain"
+                                alt=""
+                                width={30}
+                            />
+                            <span>Đăng nhập với Google</span>
+                        </button>
                         <div className="register-link">
                             <p>Bạn chưa có tài khoản
                                 <Link to="/register">

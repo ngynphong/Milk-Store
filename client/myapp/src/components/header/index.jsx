@@ -70,9 +70,6 @@ function Header() {
                                 <Link to="/abouttme">Về chúng tôi</Link>
                             </li>
 
-                            <li>
-                                <Link to="/milk-management">Quản lý sữa</Link>
-                            </li>
                         </div>
                         <div className="header__icon">
                             <li onClick={() => setIsOpenSearch(true)}>
