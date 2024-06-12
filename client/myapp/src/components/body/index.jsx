@@ -18,7 +18,7 @@ function Body() {
             <div className="body__background1">
 
                 <div className="body">
-                    <h1>Ưu Đãi Theo SET 1 </h1>
+                    <h1> Sản Phẩm Bán Chạy  </h1>
                 </div>
                 <div className="body__1__product">
                     {listOfProduct.map((value, key) => {
