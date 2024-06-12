@@ -1,3 +1,4 @@
+
 import { useState, useContext  } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -18,12 +19,12 @@ function Login() {
   });
     }
 
-    const [Email, setEmail] = useState("");
-    const [Password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const { setAuthState } = useContext(AuthContext);
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('')
 
+    const { setAuthState } = useContext(AuthContext);
     let navigate = useNavigate();
 
     const validate = () => {
@@ -49,6 +50,9 @@ function Login() {
         return isValid;
     };
 
+
+    const adminRole = 1;
+
     const login = () => {
         if (validate()) {
             const data = { Email: Email, Password: Password }
@@ -65,9 +69,16 @@ function Login() {
                         Address: response.data.Address,
                         status: true,
                     });
-                    navigate('/');
+                    // console.log(response.data.RoleID);
+                    if (response.data.RoleID !== adminRole) {
+                        navigate('/');
+                    } else {
+                        navigate('/adminHomePage');
+                    }
+
                 }
             })
+
         }
     };
 
@@ -105,8 +116,9 @@ function Login() {
                             <label>
                                 <input type="checkbox" />Ghi nhớ mật khẩu
                             </label>
-                            <a href="/editpassword">Quên mật khẩu?</a>
+                            <a href="/forgotpassword">Quên mật khẩu?</a>
                         </div>
+
                         <button className="login-button" onClick={login}>Login</button>
                         <button className='login-google' onClick={handelLoginGoogle}>
                             <img
