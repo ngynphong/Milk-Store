@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -64,7 +63,7 @@ function Register() {
                                 <Field type="password" name="ConfirmPassword" placeholder="Xác nhận mật Khẩu" />
                                 <ErrorMessage name="ConfirmPassword" component="div" className="error-message" />
                             </div>
-                            <div className="input-box">
+<div className="input-box">
                                 <Field type="text" name="FullName" placeholder="Họ và tên" />
                                 <ErrorMessage name="FullName" component="div" className="error-message" />
                             </div>
