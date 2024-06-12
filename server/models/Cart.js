@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const Order = sequelize.define('Order', {
-        OrderID: {
+    const Cart = sequelize.define('Cart', {
+        CartID: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -12,16 +12,19 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'UserID'
             }
         },
-
+        Quantity: {
+            type: DataTypes.INTEGER,
+        }
     }, {
-        tableName: 'Order',
+        tableName: 'Cart',
         timestamps: false
     });
 
-    Order.associate = models => {
-        Order.hasMany(models.User, { foreignKey: 'UserID' });
-        Order.belongsTo(models.OrderDetail, { foreignKey: 'OrderID' });
+    Cart.associate = models => {
+        Cart.hasMany(models.User, { foreignKey: 'UserID' });
+        Cart.belongsTo(models.Product, { foreignKey: 'ProductID' });
       };
     
-    return Order;
+
+    return Cart;
 };

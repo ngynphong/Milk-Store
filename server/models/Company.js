@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false // Disable timestamps if not required
     });
 
+    Company.associate = models => {
+        Company.hasMany(models.Country, { foreignKey: 'CountryID' });
+        Company.belongsTo(models.BrandMilk, { foreignKey: 'CompanyID' });
+      };
+    
 
     return Company;
 };

@@ -13,40 +13,32 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-        Quantity: {
-            type: DataTypes.INTEGER
-        },
         ImgProduct: {
             type: DataTypes.STRING
         },
         Description: {
             type: DataTypes.TEXT
         },
-        BrandID: {
+        ProductID: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'BrandMilk',
-                key: 'BrandID'
+                model: 'Product',
+                key: 'ProductID'
             }
         },
-        CategoryID: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Category',
-                key: 'CategoryID'
-            }
-        },
-        AgeRangeID: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'AgeRange',
-                key: 'AgeRangeID'
-            }
-        }
+
     }, {
         tableName: 'ProductItem',
         timestamps: false
     });
+
+    ProductItem.associate = models => {
+
+        ProductItem.hasMany(models.Product, { foreignKey: 'ProductID' });
+        ProductItem.belongsTo(models.OrderDetail, { foreignKey: 'ProductItemID' });
+        
+      };
+    
 
     return ProductItem;
 };

@@ -19,4 +19,20 @@ router.get('/byId/:ProductItemID',async (req, res) => {
     res.json(product);
 })
 
+router.put('/:ProductItemID', async (req, res) => {
+    const productItemID = req.params.ProductItemID;
+    const updatedData = req.body;
+    await ProductItem.update(updatedData, { where: { ProductItemID: productItemID } });
+    const updatedProductItem = await ProductItem.findByPk(productItemID);
+    res.json(updatedProductItem);
+});
+
+// Delete a product  by ID
+router.delete('/:ProductItemID', async (req, res) => {
+    const productItemID = req.params.ProductItemID;
+    await ProductItem.destroy({ where: { ProductItemID: productItemID } });
+    res.json({ message: 'ProductItem item deleted successfully' });
+});
+
+
 module.exports = router;

@@ -21,10 +21,21 @@ import Checkout from "./pages/checkout";
 
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+import axios from "axios";
+// import HeaderAdmin from "./components/header-admin";
+import AdminHomePage from "./pages/home/AdminHomePage";
+
+>>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
+>>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
 
 function App() {
 
   const router = createBrowserRouter([
+
 
     {
       path: "/",
@@ -53,6 +64,23 @@ function App() {
 
       ]
     },
+
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/adminHomePage",
+          element: <AdminHomePage />,
+        },
+      ]
+    },
+
+    {
+      path: "/dashboardpage",
+      element: <Dashboardpage/>
+    },
+    
     {
       path: "/dashboardpage",
       element: <Dashboardpage/>
@@ -62,6 +90,10 @@ function App() {
       path: "/milk-management",
       element: <MilksManagement />,
     },
+    // {
+    //   path: "/header-admin",
+    //   element: <HeaderAdmin />,
+    // },
     {
       path: "/cart",
       element: <Cart />

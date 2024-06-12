@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'AgeRange',
         timestamps: false
     });
+    
+    AgeRange.associate = models => {
+        AgeRange.belongsTo(models.ProductItem, { foreignKey: 'AgeRangeID' });
+      };
 
     return AgeRange;
 };
