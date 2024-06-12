@@ -2,15 +2,11 @@
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
-import  { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import "./product1.scss";
 
 function Product() {
 
   let { ProductID } = useParams();
-  
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [productObject, setProductObject] = useState({});

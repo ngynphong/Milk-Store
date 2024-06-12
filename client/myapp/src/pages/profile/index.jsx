@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import './index.scss';
 import Header from '../../components/header';
@@ -14,13 +15,13 @@ const ProfileForm = () => {
 
   useEffect(() => {
     // if (User) {
-      axios.get(`http://localhost:3001/auth/profile/${UserID}`)
-        .then(response => {
-          setFormData(response.data);
-        })
-        .catch(error => {
-          console.error('There was an error fetching the profile data!', error);
-        });
+    axios.get(`http://localhost:3001/auth/profile/${UserID}`)
+      .then(response => {
+        setFormData(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the profile data!', error);
+      });
     // }
   }, []);
 
@@ -44,8 +45,9 @@ const ProfileForm = () => {
       });
   };
 
-  return (
-    <div className="profile-form">
+ 
+   return (
+     <div>
       <div>
         <Header />
       </div>
@@ -54,57 +56,79 @@ const ProfileForm = () => {
       {updateStatus === 'success' && <p className="success-message">Cập nhật hồ sơ thành công!</p>}
       {updateStatus === 'error' && <p className="error-message">Có lỗi xảy ra khi cập nhật hồ sơ.</p>}
       <form onSubmit={handleSubmit}>
-        
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="Email"
-            name="Email"
-            value={formData.Email}
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="FullName">Tên đăng nhập</label>
-          <input
-            type="text"
-            id="FullName"
-            name="FullName"
-            onChange={handleChange}
-            value={formData.FullName}
-            
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="Age">Tuổi</label>
-          <input
-            type="number"
-            id="Age"
-            name="Age"
-            value={formData.Age}
-            onChange={handleChange}
-            min="1"
-            max="100"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="Addresss">Địa chỉ</label>
-          <input
-            type="text"
-            id="Address"
-            name="Address"
-            onChange={handleChange}
-            value={formData.Address}
-            
-          />
-        </div>
-        <div className="form-group">
-          <button type="submit">Lưu</button>
-        </div>
-      </form>
-    </div>
-  );
-};
+        <form>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="Email"
+              name="Email"
+              //value={formData.Email}
+              readOnly
+            />
+          </div>
 
-export default ProfileForm;
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="Password"
+              name="password"
+              value={formData.Password}
+              readOnly
+            />
+          </div>
+
+
+          <div className="form-group">
+            <label htmlFor="FullName">Tên đăng nhập</label>
+            <input
+              type="text"
+              id="FullName"
+              name="FullName"
+              onChange={handleChange}
+              value={formData.FullName}
+
+            />
+          </div>
+
+
+          <div className="form-group">
+            <label htmlFor="Age">Tuổi</label>
+            <input
+              type="number"
+              id="Age"
+              name="Age"
+              value={formData.Age}
+              onChange={handleChange}
+              min="1"
+              max="100"
+            />
+          </div>
+
+
+          <div className="form-group">
+            <label htmlFor="Addresss">Địa chỉ</label>
+            <input
+              type="text"
+              id="Address"
+              name="Address"
+              onChange={handleChange}
+              value={formData.Address}
+
+            />
+          </div>
+
+
+          <div className="form-group">
+            <button type="submit">Lưu</button>
+          </div>
+        </form>
+      </form>
+     </div>
+   )
+ }
+ 
+ 
+
+ export default ProfileForm;
