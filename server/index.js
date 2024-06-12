@@ -20,9 +20,9 @@ app.use('/country', CountryRouter);
 
 
 
-//Router user
-const userRouter = require('./routes/User');
-app.use('/auth', userRouter);
+// //Router user
+// const userRouter = require('./routes/User');
+// app.use('/auth', userRouter);
 
 
 

@@ -6,7 +6,7 @@ function Header() {
 
 
     return (
-        <header className="header">
+        <header className="header-admin">
             <div className="header__logo">
                 <Link to="/">
                     <img src="logo.png"
@@ -41,6 +41,7 @@ function Header() {
                     </div>
                 </ul>
             </nav>
+            
         </header>
     )
 

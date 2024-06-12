@@ -30,9 +30,9 @@ $input-border-radius: 5px;
 }
 
 .login-container {
-  background: url('/src/assets/ok.jpeg') no-repeat;
-  width: 100vw;
-  height: 85vh;
+  // background: url('/src/assets/ok.jpeg') no-repeat;
+  // width: 100vw;
+  // height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +68,10 @@ $input-border-radius: 5px;
           border: 1px solid $border-color;
           border-radius: $input-border-radius;
           box-sizing: border-box;
+        }
+        .error{
+          color: red;
+          margin-top: 5px;
         }
       }
 

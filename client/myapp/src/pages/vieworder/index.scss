@@ -1,0 +1,36 @@
+.vieworder-list {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-top: 150px;
+    background-color: aqua;
+
+    .vieworder-list__header {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .vieworder-list__table {
+        background: pink;
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+
+        th,td {
+            border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        }
+        .cod{
+            cursor: pointer;
+            &.received{
+                color: green;
+            }
+            &.notreceived{
+                color: black;
+            }
+            &.cancelled{
+                color: red;
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+.order-list {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+    &__header {
+        margin-bottom: 20px;
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .status {
+        &.in-progress {
+            color: blue;
+        }
+        &.cancelled {
+            color: red;
+        }
+    }
+
+    .payment {
+        &.pending {
+            color: orange;
+        }
+    }
+
+    .delivery {
+        &.delivered {
+            color: green;
+        }
+        &.cancelled {
+            color: red;
+        }
+    }
+
+    .cod {
+        &.received {
+            color: green;
+        }
+        &.not-received {
+            color: red;
+        }
+    }
+
+    .cancelled {
+        background-color: #fdd;
+        color: #999;
+    }
+}

@@ -1,5 +1,5 @@
-$primary-color: #db349e;
-$secondary-color: #2ecc71;
+$primary-color: #3498db;
+$secondary-color: #3498db;
 $text-color: #333;
 $background-color: #f5f5f5;
 $input-border-color: #ddd;
@@ -30,9 +30,9 @@ $button-color: #fff;
 }
 
 .register {
-    background: url('/src/assets/ok.jpeg') no-repeat;
-    width: 100vw;
-    height: 85vh;
+    // background: url('/src/assets/ok.jpeg') no-repeat;
+    // width: 100vw;
+    // height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,6 +106,13 @@ $button-color: #fff;
                     flex: 1;
                 }
             }
+        }
+
+        .error {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            margin-right: 190px;
         }
 
         .remeber-forgot {

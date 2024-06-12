@@ -27,7 +27,7 @@ function Header() {
                             <Link to="/promotion">Khuyến mãi</Link>
                         </li>
                         <li>
-                            <Link to="/">Về chúng tôi</Link>
+                            <Link to="/aboutme">Về chúng tôi</Link>
                         </li>
 
                         <li>
@@ -43,11 +43,24 @@ function Header() {
                             <ShoppingCartOutlined />
                         </li>
                         </Link>
-                        <Link to="/login">
-                        <li>
+                       
+                        <li className="header__userdropdow">
                             <UserOutlined />
+                           <ul className="userdropdow">
+                            <Link to="/vieworder">
+                           <li>Xem đơn</li>
+                           </Link>
+                           <hr />
+                            <Link to="/profile">
+                            <li>Hồ sơ của tôi</li>
+                            </Link>
+                            <hr/>
+                            <Link to="/login">
+                            <li>Đăng xuất</li>
+                            </Link>
+                           </ul>
                         </li>
-                        </Link>
+                        
                     </div>
                 </ul>
             </nav>
