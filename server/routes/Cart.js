@@ -6,6 +6,20 @@ router.get('/', async (req, res) => {
     const listCart = await Cart.findAll();
     res.json(listCart);
 });
+// Create new Cart
+router.post('/', async (req, res) => {
+    const cart = req.body;
+    await Cart.create(cart);
+    res.json(cart);
+});
+
+router.get('/:CartID', async (req, res) => {
+    const cartID = req.params.CartID;
+    const cart = await Cart.findByPk(cartID);
+    res.json(cart);
+});
+
+
 
 // Update a Cart  by ID
 router.put('/:CartID', async (req, res) => {
@@ -24,12 +38,7 @@ router.delete('/:CartID', async (req, res) => {
 });
 
 
-// Create new Cart
-router.post('/', async (req, res) => {
-    const cart = req.body;
-    await Cart.create(cart);
-    res.json(cart);
-});
+
 
 
 module.exports = router;

@@ -40,13 +40,11 @@ function Editpassword() {
                 />
             </div>
             {error && <div className="error-message">{error}</div>}
-            <div>
+            <div className="save">
                 <button type="submit" onClick={handleSave} disabled={!password || !confirmPassword}>
                     Save
                 </button>
-                <button type="button" onClick={() => { /* Handle cancel logic here */ }}>
-                    Cancel
-                </button>
+                
             </div>
             <div className="login-link">
                 <Link to="/login">Quay lại đăng nhập</Link>

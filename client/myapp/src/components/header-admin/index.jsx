@@ -5,8 +5,6 @@ import { SearchOutlined, UserOutlined, CloseOutlined} from '@ant-design/icons';
 import axios from "axios";
 import "./index.scss";
 function HeaderAdmin() {
-<<<<<<< HEAD
-=======
 
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -64,7 +62,6 @@ function HeaderAdmin() {
     const handleSearch = (value) => {
         setSearchQuery(value);
     };
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
 
 
     const logout = () => {
@@ -73,16 +70,8 @@ function HeaderAdmin() {
     };  
 
     return (
-<<<<<<< HEAD
-        <header className="header-admin">
-=======
-<<<<<<< HEAD
-        <header className="header-admin">
-=======
         <header className="header">
             <AuthContext.Provider value={{ authState, setAuthState }}>
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
             <div className="header__logo">
                 <Link to="/adminHomePage">
                     <img src="logo.png"
@@ -105,6 +94,9 @@ function HeaderAdmin() {
                         </li>
                         <li>
                             <Link to="/adminHomePage">Quản lý đơn</Link>
+                        </li>
+                        <li>
+                            <Link to="/customer-manager">Quản lý User</Link>
                         </li>
                     </div>
                     <div className="header__icon">
@@ -179,15 +171,7 @@ function HeaderAdmin() {
                 </div>
                 </ul>
             </nav>
-<<<<<<< HEAD
-            
-=======
-<<<<<<< HEAD
-            
-=======
             </AuthContext.Provider>
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
         </header>
     )
 

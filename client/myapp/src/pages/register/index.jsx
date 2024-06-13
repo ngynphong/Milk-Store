@@ -1,48 +1,43 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import './register.scss';
 
 function Register() {
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [dob, setDob] = useState('');
-    const [gender, setGender] = useState('');
-    const [address, setAddress] = useState('');
-    const [errors, setErrors] = useState({});
+    let navigate = useNavigate();
 
-    const validateForm = () => {
-        const newErrors = {};
-        if (!fullName) newErrors.fullName = 'Họ và tên is required';
-        if (!email) newErrors.email = 'Email is required';
-        if (!password) newErrors.password = 'Mật Khẩu is required';
-        if (!confirmPassword) newErrors.confirmPassword = 'Xác nhận mật Khẩu is required';
-        if (password !== confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-        if (!dob) newErrors.dob = 'Date of birth is required';
-
-        if (!address) newErrors.address = 'Địa chỉ is required';
-        return newErrors;
+    const initialValues = {
+        RoleID: 2,
+        Email: "",
+        Password: "",
+        ConfirmPassword: "",
+        FullName: "",
+        Age: "",
+        Address: "",
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formErrors = validateForm();
-        if (Object.keys(formErrors).length === 0) {
-            // Submit the form
-            console.log('Form submitted successfully');
-            // You can also handle form submission here
-        } else {
-            setErrors(formErrors);
-        }
-    };
+    const validationSchema = Yup.object().shape({
+        Email: Yup.string().email('Invalid email format').required('Email is required'),
+        Password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+        ConfirmPassword: Yup.string().oneOf([Yup.ref('Password'), null], 'Passwords must match').required('Confirm Password is required'),
+        FullName: Yup.string().required('Full Name is required'),
+        Age: Yup.number().positive('Age must be a positive number').integer('Age must be an integer').required('Age is required'),
+        Address: Yup.string().required('Address is required'),
+    });
 
+    const onSubmit = (data) => {
+        axios.post('http://localhost:3001/auth', data).then(() => {
+            console.log(data);
+            navigate('/login');
+        });
+    };
 
     return (
         <div>
             <div className="header__register">
                 <Link to="/">
-                    <img src="logo.png" alt="Logo" width={200} />
+                    <img src="logo.png" alt="" width={200} />
                 </Link>
                 <div>
                     <h1>Đăng Ký</h1>
@@ -50,78 +45,47 @@ function Register() {
             </div>
             <div className="register">
                 <div className="wrapper">
-                    <form className="register__form" onSubmit={handleSubmit}>
-                        <h1>Đăng kí</h1>
-                        <div className="input-box">
-                            <input
-                                type="text"
-                                placeholder="Họ và tên"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
-                            />
-                            {errors.fullName && <p className="error">{errors.fullName}</p>}
-                        </div>
-                        <div className="input-box">
-                            <input
-                                type="text"
-                                placeholder="Email của bạn"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {errors.email && <p className="error">{errors.email}</p>}
-                        </div>
-                        <div className="input-box">
-                            <input
-                                type="password"
-                                placeholder="Mật Khẩu"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            {errors.password && <p className="error">{errors.password}</p>}
-                        </div>
-                        <div className="input-box">
-                            <input
-                                type="password"
-                                placeholder="Xác nhận mật Khẩu"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
-                            {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-                        </div>
-                        <div className="input-box sex">
-                            <input
-                                type="number"
-                                placeholder="tuổi"
-                                value={dob}
-                                onChange={(e) => setDob(e.target.value)}
-                            />
-                            {errors.dob && <p className="error">{errors.dob}</p>}
-
-                        </div>
-                        <div className="input-box">
-                            <input
-                                type="text"
-                                placeholder="Địa chỉ"
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                            />
-                            {errors.address && <p className="error">{errors.address}</p>}
-                        </div>
-                        <div className="remeber-forgot">
-                            <label>
-                                <input type="checkbox" />Ghi nhớ mật khẩu
-                            </label>
-                            <Link to="/forgotpassword">Quên mật khẩu?</Link>
-                        </div>
-                        <button className="done" type="submit">Đăng ký</button>
-                        <p>Bạn đã có tài khoản
-                            <Link to="/login">Đăng nhập</Link>
-                        </p>
-                    </form>
+                    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                        <Form className="register__form">
+                            <h1>Đăng kí</h1>
+                            <div className="input-box">
+                                <Field type="hidden" name="RoleID" value={2} />
+                            </div>
+                            <div className="input-box">
+                                <Field type="email" name="Email" placeholder="Email của bạn" />
+                                <ErrorMessage name="Email" component="div" className="error-message" />
+                            </div>
+                            <div className="input-box">
+                                <Field type="password" name="Password" placeholder="Mật Khẩu" />
+                                <ErrorMessage name="Password" component="div" className="error-message" />
+                            </div>
+                            <div className="input-box">
+                                <Field type="password" name="ConfirmPassword" placeholder="Xác nhận mật Khẩu" />
+                                <ErrorMessage name="ConfirmPassword" component="div" className="error-message" />
+                            </div>
+                            <div className="input-box">
+                                <Field type="text" name="FullName" placeholder="Họ và tên" />
+                                <ErrorMessage name="FullName" component="div" className="error-message" />
+                            </div>
+                            <div className="input-box">
+                                <Field type="number" name="Age" placeholder="Tuổi" />
+                                <ErrorMessage name="Age" component="div" className="error-message" />
+                            </div>
+                            <div className="input-box">
+                                <Field type="text" name="Address" placeholder="Địa chỉ" />
+                                <ErrorMessage name="Address" component="div" className="error-message" />
+                            </div>
+                            <button className="done" type="submit">Đăng ký </button>
+                            <p>Bạn đã có tài khoản
+                                <Link to="/login">
+                                    <a>Đăng nhập</a>
+                                </Link>
+                            </p>
+                        </Form>
+                    </Formik>
                 </div>
             </div>
         </div>
-
     );
 }
 

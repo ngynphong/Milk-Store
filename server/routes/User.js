@@ -1,38 +1,21 @@
-<<<<<<< HEAD
-// const express = require('express');
-// const router = express.Router();
-// const { Users } = require('../models')
-// const bcrypt = require('bcrypt');
-// const { sign } = require('jsonwebtoken');
-=======
 const express = require('express');
 const router = express.Router();
 const { User } = require('../models')
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { validateToken } = require('../middlewares/AuthMiddleware');
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
+
+// Delete a User  by ID
+router.delete('/:UserID', async (req, res) => {
+    const userID = req.params.UserID;
+    await User.destroy({ where: { UserID: userID } });
+    res.json({ message: 'User deleted successfully' });
+});
 
 
 router.get('/', async (req, res) => {
     const listUser = await User.findAll();
     res.json(listUser);
-});
-
-//forget password
-router.put('/forgotpassword', async (req, res) => {
-    const { Email, Password } = req.body;
-    
-    bcrypt.hash(Password, 10).then((hash) => {    
-        User.update({Password: hash}, {where: {Email: Email}}, {
-            attributes: { exclude: ["FullName", "RoleID", "Age", "Address"] },
-        });
-    });
-    // await 
-    const updateUser = await User.findOne(Email);
-    
-    res.json(updateUser);
-
 });
 
 //Update profile
@@ -95,21 +78,11 @@ router.post('/login', async (req, res) => {
             }
             else {
                 const accessToken = sign({ Email: user.Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address, RoleID: user.RoleID }, 'importantsecret')
-                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address, RoleID: user.RoleID });
+                res.json({ token: accessToken, Email: Email, UserID: user.UserID, FullName: user.FullName, Age: user.Age, Address: user.Address , RoleID: user.RoleID});
             }
         });
     }
 
 });
-
-// Routes
-// router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// router.get('/auth/google/callback', 
-//     passport.authenticate('google', { failureRedirect: '/' }),
-//     (req, res) => {
-//         res.redirect('/profile');
-//     }
-// );
 
 module.exports = router

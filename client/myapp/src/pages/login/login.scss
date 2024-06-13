@@ -30,9 +30,9 @@ $input-border-radius: 5px;
 }
 
 .login-container {
-  // background: url('/src/assets/ok.jpeg') no-repeat;
-  // width: 100vw;
-  // height: 85vh;
+
+  width: 100vw;
+  height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,8 +59,11 @@ $input-border-radius: 5px;
       }
 
       .input-group {
+        margin-top: 15px;
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: -10px;
+        padding: 10px;
+        border-radius: 5px;
 
         input {
           width: 100%;
@@ -69,11 +72,26 @@ $input-border-radius: 5px;
           border-radius: $input-border-radius;
           box-sizing: border-box;
         }
-        .error{
-          color: red;
-          margin-top: 5px;
-        }
       }
+
+      // login.scss
+
+      .input-group.error {
+        border: 1px solid red;
+
+        width: 100%;
+
+      }
+
+      .error-message {
+        color: red;
+        font-size: 16px;
+        margin-top: 15px;
+        margin-bottom: -15px;
+        width: 100%;
+        margin-left: 10px;
+      }
+
 
       .remember-forgot {
         display: flex;
@@ -137,3 +155,4 @@ $input-border-radius: 5px;
     }
   }
 }
+

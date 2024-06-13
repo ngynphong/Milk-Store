@@ -9,20 +9,60 @@ import Promotion from "./pages/promotion";
 import Product from "./pages/product";
 
 import PromotionManagement from "./pages/promotion-management"
-import Vieworder from "./pages/vieworder";
 import Profile from "./pages/profile";
-import Productcategory from "./pages/productcategory";
+import Vieworder from "./pages/vieworder";
+
 import Forgotpassword from "./pages/forgotpassword";
-import Aboutme from "./pages/aboutme";
 import Editpassword from "./pages/editpassword";
+<<<<<<< HEAD
 import Dashboardpage from "./pages/dashboardpage/dashboardpage";
 import Checkout from "./pages/checkout";
+=======
+import { AuthContext } from "./contexts/AuthContext";
+import { useState, useEffect } from "react";
+
+import axios from "axios";
+>>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 // import HeaderAdmin from "./components/header-admin";
 import AdminHomePage from "./pages/home/AdminHomePage";
+import CustomerManagement from "./pages/customer-management";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
 function App() {
+
+  const [authState, setAuthState] = useState({
+    Email: "",
+    UserID: 0,
+    status: false,
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/auth/auth", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          setAuthState({ ...authState, status: false });
+        } else {
+          setAuthState({
+            Email: response.data.Email,
+            FullName: response.data.FullName,
+            UserID: response.data.UserID,
+            Age: response.data.Age,
+            Address: response.data.Address,
+            status: true,
+          });
+        }
+      });
+  }, []);
+
 
   const router = createBrowserRouter([
 
@@ -39,18 +79,13 @@ function App() {
           element: <Promotion />
         },
         {
-          path: "/aboutme",
-          element: <Aboutme />
-        },
-        {
-          path: "/vieworder",
-          element: <Vieworder />
-        },
-
-        {
-          path: "/product",
+          path: "/product/:ProductID",
           element: <Product />,
-        }
+        },
+        {
+          path: "/profile/:UserID",
+          element: <Profile />
+        },
 
       ]
     },
@@ -67,16 +102,6 @@ function App() {
     },
 
     {
-      path: "/dashboardpage",
-      element: <Dashboardpage/>
-    },
-    
-    {
-      path: "/dashboardpage",
-      element: <Dashboardpage/>
-    },
-    
-    {
       path: "/milk-management",
       element: <MilksManagement />,
     },
@@ -88,6 +113,12 @@ function App() {
       path: "/cart",
       element: <Cart />
     },
+
+    {
+      path: "/customer-manager",
+      element: <CustomerManagement/>
+    },
+
     {
       path: "/login",
       element: <Login />
@@ -100,43 +131,28 @@ function App() {
       path: "/forgotpassword",
       element: <Forgotpassword />
     },
-    
     {
       path: "/promotion-management",
       element: <PromotionManagement />
     },
-
     {
       path: "/vieworder",
       element: <Vieworder />
     },
-    {
-      path: "/profile",
-      element: <Profile />
-    },
-    {
-      path: "/productcategory",
-      element: <Productcategory />
-    },
+
     {
       path: "/editpassword",
-      element: <Editpassword/>
+      element: <Editpassword />
     },
-    {
-      path: "/checkout",
-      element: <Checkout/>
-    },
-    
 
 
   ]);
 
   return (
-
-
-    <RouterProvider router={router} />
+    <AuthContext.Provider value={{ authState, setAuthState }}>
+      <RouterProvider router={router} />
+    </AuthContext.Provider>
   )
-
 
 }
 

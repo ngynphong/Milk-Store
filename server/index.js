@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const passport = require('passport');
-// const cookieSession = require('cookie-session');
-// const passportSetup = require('./passport');
 
 app.use(express.json());
 app.use(cors());
@@ -22,10 +19,13 @@ app.use('/country', CountryRouter);
 //Router user
 const userRouter = require('./routes/User');
 app.use('/auth', userRouter);
+<<<<<<< HEAD
 
 //Router user
 // const authRouter = require('./routes/auth');
 // app.use('/auth', authRouter);
+=======
+>>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
 const CompanyRouter = require('./routes/Company');
 app.use('/company', CompanyRouter);
@@ -51,28 +51,7 @@ app.use('/productItem', ProductItemRouter);
 const roleRouter = require('./routes/Role');
 app.use('/role', roleRouter);
 
-//Router Cart
-const CartRouter = require('./routes/Cart');
-app.use('/cart', CartRouter);
 
-// app.use(
-//     cookieSession({
-//         name: 'Session',
-//         key: ['cyberwolve'],
-//         maxAge: 24*60*60*100,
-//     })
-// );
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// app.use(
-//     cors({
-//         origin: 'http://localhost:5173',
-//         methods:'GET, POST, PUT, DELETE',
-//         credentials: true,
-//     })
-// );
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
