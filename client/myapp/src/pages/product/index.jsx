@@ -1,25 +1,13 @@
-<<<<<<< HEAD
 import { useState } from "react";
-=======
-import { useEffect, useState } from "react";
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
 import "./product1.scss";
-<<<<<<< HEAD
-function Product() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-=======
-<<<<<<< HEAD
 import axios from "axios";
 import swal from "sweetalert";
 import { useParams } from "react-router-dom";
-=======
-import swal from 'sweetalert';
 
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
+
 function Product() {
 
   let { ProductID } = useParams();
@@ -38,40 +26,27 @@ function Product() {
   const submitaddToCart = (e) =>{
     e.preventDefault();
 
-    const data ={
-      ProductID : ProductID,
-     }
+     const data = {
+      ProductID: productObject.ProductID,
+      Quantity: Quantity,
+    };
 
-    axios.post(`http://localhost:3001/Cart`,data).then(res => {
-          if(res.data.status === 201){
-            swal("Success",res.data.message,"success");
-          } else if(res.data.status === 409){
-            swal("Warning",res.data.message,"warning");
-          } else if(res.data.status === 401){
-            swal("Error",res.data.message,"error");
-            }
-     });
+function addToCart  (data)  {
+  data.Quantity = quantity;
+  axios
+    .post('http://localhost:3001/Cart', data)
+    .then((res) => {
+      if (res.status === 200) {
+        swal("Success", "Product added to cart successfully!", "success");
+      } else {
+        // Trường hợp phản hồi không phải là mã thành công (200)
+        swal("Error", "Failed to add product to cart. Please try again.", "error");
+      }
+    })
+
+
 }
 
-  const submitaddToCart = (e) =>{
-    e.preventDefault();
-
-    const data ={
-      ProductID : ProductID,
-     }
-
-    axios.post(`http://localhost:3001/Cart`,data).then(res => {
-          if(res.data.status === 201){
-            swal("Success",res.data.message,"success");
-          } else if(res.data.status === 409){
-            swal("Warning",res.data.message,"warning");
-          } else if(res.data.status === 401){
-            swal("Error",res.data.message,"error");
-            }
-     });
-}
-
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
   return (
    <div>
    <div className="swiper__product">
@@ -129,18 +104,11 @@ function Product() {
         <h1>Sữa Similac 5G số 4 900g (2-6 tuổi)</h1>
         <span>519.000 VND</span>
         <div className="swiper__button">
-<<<<<<< HEAD
-          <button>Thêm giỏ hàng</button>
+
+        <button onClick={() => addToCart(data)}>Thêm giỏ hàng</button>
           <button>Mua Ngay</button>
         </div>
       </div>
-=======
-          <button onClick={submitaddToCart}>Thêm giỏ hàng</button>
-          <button>Mua Ngay</button>
-        </div>
-<<<<<<< HEAD
-      </div>
-=======
 
         <div className="swiper__info">
 
@@ -154,8 +122,6 @@ function Product() {
         </div>
 
 
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
       </div>
       <div className="info__detail">
         <h1>Chi tiết sản phẩm</h1>

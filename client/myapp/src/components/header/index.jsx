@@ -2,19 +2,14 @@ import { Link } from "react-router-dom";
 import { SearchOutlined, UserOutlined, ShoppingCartOutlined,CloseOutlined } from '@ant-design/icons';
 import "./index.scss";
 import { useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 function Header() {
 
     const [isOpenSearch, setIsOpenSearch] =  useState(false);
+    const [authState,setAuthState] = useState([]);
 
     return (
         <header className="header">
-<<<<<<< HEAD
-            <div className="header__logo">
-                <Link to="/">
-                    <img src="logo.png"
-                        alt=""
-                        width={200}
-=======
             <AuthContext.Provider value={{ authState, setAuthState }}>
                 <div className="header__logo">
                     <Link to="/">
@@ -97,9 +92,8 @@ function Header() {
                         placeholder="Search a milk..."
                         value={searchQuery}
                         onChange={(e) => handleSearch(e.target.value)}
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
                     />
-                </Link>
+                </div>
             </div>
 
             <nav className="header__nav">
@@ -153,6 +147,8 @@ function Header() {
                 <input type="text" placeholder="Search a milk..." />
                 <CloseOutlined onClick={() => setIsOpenSearch(false)} />
             </div>
+            
+            </AuthContext.Provider>
         </header>
     )
 

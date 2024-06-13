@@ -17,20 +17,10 @@ import Aboutme from "./pages/aboutme";
 import Editpassword from "./pages/editpassword";
 import Dashboardpage from "./pages/dashboardpage/dashboardpage";
 import Checkout from "./pages/checkout";
-
-
-
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-import axios from "axios";
 // import HeaderAdmin from "./components/header-admin";
 import AdminHomePage from "./pages/home/AdminHomePage";
 
->>>>>>> ae8f8b3e9968a07e2fd14d7e03ead17eac839bdf
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
+
 
 function App() {
 

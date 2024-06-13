@@ -19,19 +19,9 @@ app.use('/brand', brandMilkRouter);
 //Router country
 const CountryRouter = require('./routes/Country');
 app.use('/country', CountryRouter);
-<<<<<<< HEAD
-
-
-
-
-// //Router user
-// const userRouter = require('./routes/User');
-// app.use('/auth', userRouter);
-=======
 //Router user
 const userRouter = require('./routes/User');
 app.use('/auth', userRouter);
->>>>>>> dbb869297cac897a02815ce6461e2d9fcc844471
 
 //Router user
 // const authRouter = require('./routes/auth');
