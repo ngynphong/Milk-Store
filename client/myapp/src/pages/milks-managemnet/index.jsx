@@ -1,21 +1,21 @@
 import { Button, Form, Image, Input, Modal, Popconfirm, Select, Table, Upload } from "antd";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState} from "react";
 import "./index.scss";
 import axios from "axios";
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from "../../utils/upload";
-import { AuthContext } from "../../contexts/AuthContext";
+
 // import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
-import { useNavigate } from "react-router-dom";
+
 import HeaderAdmin from "../../components/header-admin";
 
 
 function MilksManagement() {
 
-  const navigate = useNavigate();
+
   const [form] = useForm();
-  const { authState } = useContext(AuthContext); // Access authentication state from context
+
   
   const [dataSource, setDataSource] = useState([]);
   const [isEditing, setEditing] = useState(false);
