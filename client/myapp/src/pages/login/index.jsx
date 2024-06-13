@@ -1,7 +1,8 @@
-
-import { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import "./login.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
@@ -11,54 +12,32 @@ function Login() {
     const handelLoginGoogle = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 console.log(credential);
             }).catch((error) => {
                 console.log(error);
             });
-    }
-
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('')
+    };
 
     const { setAuthState } = useContext(AuthContext);
     let navigate = useNavigate();
 
-    const validate = () => {
-        let isValid = true;
-
-        if (!Email) {
-            setEmailError("Email không được để trống");
-            isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(Email)) {
-            setEmailError("Email không hợp lệ");
-            isValid = false;
-        } else {
-            setEmailError("");
-        }
-
-        if (!Password) {
-            setPasswordError("Mật khẩu không được để trống");
-            isValid = false;
-        } else {
-            setPasswordError("");
-        }
-
-        return isValid;
-    };
-
-
     const adminRole = 1;
 
-    const login = () => {
-        if (validate()) {
-            const data = { Email: Email, Password: Password }
+    const formik = useFormik({
+        initialValues: {
+            Email: '',
+            Password: '',
+        },
+        validationSchema: Yup.object({
+            Email: Yup.string().email('Email không hợp lệ').required('Email không được để trống'),
+            Password: Yup.string().min(6, 'Password phải ít nhất 6 kí tự').required('Mật khẩu không được để trống'),
+        }),
+        onSubmit: values => {
+            const data = { Email: values.Email, Password: values.Password };
             axios.post('http://localhost:3001/auth/login', data).then((response) => {
                 if (response.data.error) {
-                    alert(response.data.error)
+                    alert(response.data.error);
                 } else {
                     localStorage.setItem("accessToken", response.data.token);
                     setAuthState({
@@ -75,12 +54,12 @@ function Login() {
                     } else {
                         navigate('/adminHomePage');
                     }
-
                 }
-            })
+            });
+        },
+    });
 
-        }
-    };
+
 
     return (
         <div>
@@ -95,22 +74,32 @@ function Login() {
             <div className="login-container">
                 <div className="login-wrapper">
                     <h1>Đăng nhập</h1>
-                    <div className="login-form">
+                    <form className="login-form" onSubmit={formik.handleSubmit}>
                         <input
-                            className={`input-group ${emailError ? 'error' : ''}`}
+                            className={`input-group ${formik.touched.Email && formik.errors.Email ? 'error' : ''}`}
                             placeholder="Email"
                             type="text"
-                            onChange={(event) => { setEmail(event.target.value) }}
+                            name="Email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.Email}
                         />
-                        {emailError && <p className="error-message">{emailError}</p>}
+                        {formik.touched.Email && formik.errors.Email ? (
+                            <p className="error-message">{formik.errors.Email}</p>
+                        ) : null}
                         <br />
                         <input
-                            className={`input-group ${passwordError ? 'error' : ''}`}
+                            className={`input-group ${formik.touched.Password && formik.errors.Password ? 'error' : ''}`}
                             placeholder="Your password"
                             type="password"
-                            onChange={(event) => { setPassword(event.target.value) }}
+                            name="Password"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.Password}
                         />
-                        {passwordError && <p className="error-message">{passwordError}</p>}
+                        {formik.touched.Password && formik.errors.Password ? (
+                            <p className="error-message">{formik.errors.Password}</p>
+                        ) : null}
                         <br />
                         <div className="remember-forgot">
                             <label>
@@ -119,8 +108,8 @@ function Login() {
                             <a href="/forgotpassword">Quên mật khẩu?</a>
                         </div>
 
-                        <button className="login-button" onClick={login}>Login</button>
-                        <button className='login-google' onClick={handelLoginGoogle}>
+                        <button className="login-button" type="submit">Login</button>
+                        <button className='login-google' onClick={handelLoginGoogle} type="button">
                             <img
                                 src="https://th.bing.com/th/id/OIP.IcreJX7hnOjNYRnlo4DCWwHaE8?rs=1&pid=ImgDetMain"
                                 alt=""
@@ -137,7 +126,7 @@ function Login() {
                                 </Link>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -145,5 +134,3 @@ function Login() {
 }
 
 export default Login;
-
-
