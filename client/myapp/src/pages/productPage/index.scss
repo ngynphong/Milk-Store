@@ -91,6 +91,7 @@
         }
     }
 }
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -107,14 +108,15 @@
 }
 
 .pagination button:hover {
-    background-color: #f7f7f7;
+
+    background-color: pink;
 }
 
 .pagination button.active {
-    background-color: #337ab7;
+    background-color: pink;
     color: #fff;
 }
 
 .pagination button.active:hover {
-    background-color: #23527c;
+    background-color: pink;
 }
