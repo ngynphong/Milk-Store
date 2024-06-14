@@ -1,18 +1,9 @@
 import { Button, Form, Image, Input, Modal, Popconfirm, Select, Table, Upload } from "antd";
-<<<<<<< HEAD
-import { useEffect, useState, useContext } from "react";
-=======
 import { useEffect, useState} from "react";
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 import "./index.scss";
 import axios from "axios";
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from "../../utils/upload";
-<<<<<<< HEAD
-import { AuthContext } from "../../contexts/AuthContext";
-=======
-
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 // import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
 
@@ -213,10 +204,6 @@ function MilksManagement() {
 
   return (
     <div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
       <HeaderAdmin />
       <div className="table">
         <Button type="primary" onClick={handleShowModal}>Add New Milk</Button>
@@ -295,14 +282,10 @@ function MilksManagement() {
                 {fileList.length >= 8 ? null : uploatButton}
               </Upload>
             </Form.Item>
-<<<<<<< HEAD
-            <Form.Item label="Desciption" name="desciption">
-=======
             <Form.Item label="Quantity" name="Quantity" initialValue={currentProduct?.Quantity}>
               <Input />
             </Form.Item>
             {/* <Form.Item label="Desciption" name="desciption">
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
               <TextArea rows={4} />
             </Form.Item> */}
           </Form>

@@ -14,23 +14,21 @@ import Vieworder from "./pages/vieworder";
 
 import Forgotpassword from "./pages/forgotpassword";
 import Editpassword from "./pages/editpassword";
-<<<<<<< HEAD
-import Dashboardpage from "./pages/dashboardpage/dashboardpage";
-import Checkout from "./pages/checkout";
-=======
 import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 // import HeaderAdmin from "./components/header-admin";
 import AdminHomePage from "./pages/home/AdminHomePage";
 import CustomerManagement from "./pages/customer-management";
+import Dashboardpage from "./components/dashboardpage/dashboardpage";
+import Resetpassword from "./pages/resetpassword";
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
+
+
+import ProductPage from "./pages/productPage";
+
 
 function App() {
 
@@ -82,13 +80,32 @@ function App() {
           path: "/product/:ProductID",
           element: <Product />,
         },
+
         {
           path: "/profile/:UserID",
           element: <Profile />
         },
+        {
+          path: "/productFilter",
+          element: <ProductPage />
+        },
 
       ]
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {
       path: "/",
@@ -98,6 +115,28 @@ function App() {
           path: "/adminHomePage",
           element: <AdminHomePage />,
         },
+        {
+          path: "/productFilter",
+          element: <ProductPage />
+        },
+        {
+          path: "/profile/:UserID",
+          element: <Profile />
+        },
+      ]
+    },
+    {
+      path: "/dashboardpage/*",
+      element: <Dashboardpage />,
+      children: [
+        {
+          path: "reset",
+          element: <Resetpassword />
+        },
+        {
+          path: "vieworder",
+          element: <Vieworder />
+        }
       ]
     },
 
@@ -116,7 +155,7 @@ function App() {
 
     {
       path: "/customer-manager",
-      element: <CustomerManagement/>
+      element: <CustomerManagement />
     },
 
     {
@@ -144,7 +183,10 @@ function App() {
       path: "/editpassword",
       element: <Editpassword />
     },
-
+    {
+      path: "/profile/:UserID",
+      element: <Profile />
+    },
 
   ]);
 

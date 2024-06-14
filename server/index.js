@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const YAML = require('yaml');
+const fs = require('fs');
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
 app.use(express.json());
 app.use(cors());
 
+const file = fs.readFileSync(path.resolve('api.yaml'), 'utf8');
+const swaggerDocument = YAML.parse(file);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const db = require('./models');
 
 //Router productitem

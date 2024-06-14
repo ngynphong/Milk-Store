@@ -1,129 +1,100 @@
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
-import  { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./product1.scss";
+import swal from 'sweetalert';
 import { Header } from "antd/es/layout/layout";
-
-
-import swal from "sweetalert";
-
 
 function Product() {
 
   let { ProductID } = useParams();
+  let { Quantity } = useParams();
+  const [quantity, setQuantity] = useState(1);
+
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const [productObject, setProductObject] = useState({});
-
 
   useEffect(() => {
     axios.get(`http://localhost:3001/product/${ProductID}`).then((response) => {
       setProductObject(response.data);
-      
     });
+  }, [ProductID]);
+
+  const data = {
+    ProductID: productObject.ProductID,
+    Quantity: Quantity,
+  };
+
+  function addToCart  (data)  {
+    data.Quantity = quantity;
+    axios
+      .post('http://localhost:3001/Cart/', data)
+      .then((res) => {
+        if (res.status === 200) {
+          swal("Success", "Product added to cart successfully!", "success");
+        } else {
+          // Trường hợp phản hồi không phải là mã thành công (200)
+          swal("Error", "Failed to add product to cart. Please try again.", "error");
+        }
+      })
 
 
+  }
 
-  },[ProductID]);
-
-
-  const submitaddToCart = (e) =>{
-    e.preventDefault();
-
-     const data = {
-      ProductID: productObject.ProductID,
-      Quantity: Quantity,
-    };
-
-function addToCart  (data)  {
-  data.Quantity = quantity;
-  axios
-    .post('http://localhost:3001/Cart', data)
-    .then((res) => {
-      if (res.status === 200) {
-        swal("Success", "Product added to cart successfully!", "success");
-      } else {
-        // Trường hợp phản hồi không phải là mã thành công (200)
-        swal("Error", "Failed to add product to cart. Please try again.", "error");
-      }
-    })
-
-
-}
 
   return (
-   <div>
-    <Header/>
-   <div className="swiper__product">
-      <div className="swiper__item">
-        <>
-          <Swiper
-            style={{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-            }}
-            spaceBetween={4}
-            navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper2"
-          >
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81584-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81591-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81592-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-          </Swiper>
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            spaceBetween={4}
-            slidesPerView={4}
-            freeMode={true}
-            watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81584-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81591-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://cdn1.concung.com/2022/02/43262-81592-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-            </SwiperSlide>
-          </Swiper>
-        </>
-      </div>
-      <div className="swiper__info">
-        <h1>Sữa Similac 5G số 4 900g (2-6 tuổi)</h1>
-        <span>519.000 VND</span>
-        <div className="swiper__button">
-
-        <button onClick={() => addToCart(data)}>Thêm giỏ hàng</button>
-          <button>Mua Ngay</button>
+    <div>
+      <Header/>
+      <div className="swiper__product">
+        <div className="swiper__item">
+          <>
+            <Swiper
+              style={{
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+              }}
+              spaceBetween={4}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper2"
+            >
+              <SwiperSlide>
+                <img src={productObject.ImgProduct} />
+              </SwiperSlide>
+            
+            </Swiper>
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              spaceBetween={4}
+              slidesPerView={4}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper"
+            >
+              <SwiperSlide>
+                <img src={productObject.ImgProduct} />
+              </SwiperSlide>
+            </Swiper>
+          </>
         </div>
-      </div>
 
         <div className="swiper__info">
-
+       
           <h1>{productObject.ProductName}</h1>
           <span>{productObject.Price}</span>
+          <div className="button__quantity">
+          <button onClick={() => setQuantity(prev => Math.max(prev - 1, 1))}>-</button>
+            <span>{quantity}</span>
+            <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
+            </div>
           <div className="swiper__button">
-            <button>Thêm giỏ hàng</button>
+            <button onClick={() => addToCart(data)}>Thêm giỏ hàng</button>
             <button>Mua Ngay</button>
           </div>
         </div>
@@ -135,12 +106,12 @@ function addToCart  (data)  {
         <div className="info__table">
           <tbody>
             <tr>
+              <td>Tên sản phẩm</td>
               <td>{productObject.ProductName}</td>
-              {/* <td>Thực phẩm bổ sung cho trẻ 2-6 tuổi: Similac 4</td> */}
             </tr>
             <tr>
               <td>Thương hiệu</td>
-              {/* <td>{productItemObject.BrandMilk && productItemObject.BrandMilk.name}</td> */}
+              <td>{productObject.BrandMilk && productObject.BrandMilk.name}</td>
             </tr>
             <tr>
               <td>Xuất xứ thương hiệu</td>
@@ -195,6 +166,5 @@ function addToCart  (data)  {
     </div>
   )
 }
-}
 
-export default Product;
+export default Product; 

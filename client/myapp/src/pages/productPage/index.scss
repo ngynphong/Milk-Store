@@ -1,0 +1,122 @@
+.product-page {
+
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.product-page h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: pink;
+}
+
+
+.body__background1 {
+    margin-top: 75px;
+    flex-wrap: wrap;
+}
+
+.leftzone {
+    margin-top: 75px;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+
+    input {
+        cursor: pointer;
+    }
+
+    label {
+        font-weight: bold;
+    }
+}
+
+.body__1__product {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.body__1__product>div {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    width: 220px;
+
+    img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    h4 {
+        font-size: 16px;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    #linkTest {
+        text-decoration: none;
+    }
+
+    span {
+        display: block;
+        font-size: 18px;
+        color: #e74c3c;
+        margin: 10px 0;
+    }
+
+    button {
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #c0392b;
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 10px 15px;
+}
+
+.pagination button:hover {
+
+    background-color: pink;
+}
+
+.pagination button.active {
+    background-color: pink;
+    color: #fff;
+}
+
+.pagination button.active:hover {
+    background-color: pink;
+}
