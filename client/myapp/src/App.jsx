@@ -21,6 +21,8 @@ import axios from "axios";
 // import HeaderAdmin from "./components/header-admin";
 import AdminHomePage from "./pages/home/AdminHomePage";
 import CustomerManagement from "./pages/customer-management";
+import Dashboardpage from "./components/dashboardpage/dashboardpage";
+import Resetpassword from "./pages/resetpassword";
 
 
 function App() {
@@ -73,10 +75,7 @@ function App() {
           path: "/product/:ProductID",
           element: <Product />,
         },
-        {
-          path: "/profile/:UserID",
-          element: <Profile />
-        },
+        
 
       ]
     },
@@ -89,6 +88,20 @@ function App() {
           path: "/adminHomePage",
           element: <AdminHomePage />,
         },
+      ]
+    },
+    {
+      path: "/dashboardpage/*",
+      element: <Dashboardpage />,
+      children: [
+        {
+          path: "reset",
+          element: <Resetpassword />
+        },
+        {
+          path: "vieworder",
+          element: <Vieworder />
+        }
       ]
     },
 
@@ -135,7 +148,10 @@ function App() {
       path: "/editpassword",
       element: <Editpassword />
     },
-
+    {
+      path: "/profile/:UserID",
+      element: <Profile />
+    },
 
   ]);
 
