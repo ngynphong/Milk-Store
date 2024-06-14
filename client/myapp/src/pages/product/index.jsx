@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { useState } from "react";
-=======
-
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from 'swiper/react';
@@ -10,38 +5,30 @@ import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./product1.scss";
-<<<<<<< HEAD
-import axios from "axios";
+import { Header } from "antd/es/layout/layout";
+
+
 import swal from "sweetalert";
-import { useParams } from "react-router-dom";
 
 
-=======
-
-
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 function Product() {
 
   let { ProductID } = useParams();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const [productObject, setProductObject] = useState({});
-  // const [productItem, setProductItem] = useState({});
-  // const [brandMilkObject, setbrandMilkObject] = useState({});
+
 
   useEffect(() => {
     axios.get(`http://localhost:3001/product/${ProductID}`).then((response) => {
       setProductObject(response.data);
-      // setProductItem(response.data.Product)
+      
     });
 
-    // axios.get(`http://localhost:3001/brand`).then((response) => {
-    //   setbrandMilkObject(response.data);
-    // });
+
 
   },[ProductID]);
 
-<<<<<<< HEAD
 
   const submitaddToCart = (e) =>{
     e.preventDefault();
@@ -69,6 +56,7 @@ function addToCart  (data)  {
 
   return (
    <div>
+    <Header/>
    <div className="swiper__product">
       <div className="swiper__item">
         <>
@@ -129,61 +117,6 @@ function addToCart  (data)  {
           <button>Mua Ngay</button>
         </div>
       </div>
-=======
-  return (
-    <div>
-      <div className="swiper__product">
-        <div className="swiper__item">
-          <>
-            <Swiper
-              style={{
-                '--swiper-navigation-color': '#fff',
-                '--swiper-pagination-color': '#fff',
-              }}
-              spaceBetween={4}
-              navigation={true}
-              thumbs={{ swiper: thumbsSwiper }}
-              modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper2"
-            >
-              <SwiperSlide>
-                <img src={productObject.ImgProduct} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81591-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81592-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-            </Swiper>
-            <Swiper
-              onSwiper={setThumbsSwiper}
-              spaceBetween={4}
-              slidesPerView={4}
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper"
-            >
-              <SwiperSlide>
-                <img src={productObject.ImgProduct} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81586-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81591-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="https://cdn1.concung.com/2022/02/43262-81592-large_mobile/sua-similac-5g-so-4-900g-2-6-tuoi.jpg" />
-              </SwiperSlide>
-            </Swiper>
-          </>
-        </div>
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
         <div className="swiper__info">
 
@@ -261,6 +194,7 @@ function addToCart  (data)  {
       </div>
     </div>
   )
+}
 }
 
 export default Product;

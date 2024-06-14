@@ -19,13 +19,6 @@ app.use('/country', CountryRouter);
 //Router user
 const userRouter = require('./routes/User');
 app.use('/auth', userRouter);
-<<<<<<< HEAD
-
-//Router user
-// const authRouter = require('./routes/auth');
-// app.use('/auth', authRouter);
-=======
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
 const CompanyRouter = require('./routes/Company');
 app.use('/company', CompanyRouter);
