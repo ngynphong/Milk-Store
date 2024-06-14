@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const YAML = require('yaml');
+const fs = require('fs');
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
 app.use(express.json());
 app.use(cors());
 
+const file = fs.readFileSync(path.resolve('api.yaml'), 'utf8');
+const swaggerDocument = YAML.parse(file);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const db = require('./models');
 
 //Router productitem
@@ -19,13 +25,6 @@ app.use('/country', CountryRouter);
 //Router user
 const userRouter = require('./routes/User');
 app.use('/auth', userRouter);
-<<<<<<< HEAD
-
-//Router user
-// const authRouter = require('./routes/auth');
-// app.use('/auth', authRouter);
-=======
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
 const CompanyRouter = require('./routes/Company');
 app.use('/company', CompanyRouter);

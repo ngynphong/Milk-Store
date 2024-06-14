@@ -2,14 +2,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SearchOutlined, UserOutlined, ShoppingCartOutlined, CloseOutlined } from '@ant-design/icons';
 import "./index.scss";
-<<<<<<< HEAD
-import { useState } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-function Header() {
-
-    const [isOpenSearch, setIsOpenSearch] =  useState(false);
-    const [authState,setAuthState] = useState([]);
-=======
 import { AuthContext } from "../../contexts/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -24,13 +16,28 @@ function Header() {
         status: false,
     });
 
+    const [searchQuery, setSearchQuery] = useState("");
+    const [productData, setProductData] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
     useEffect(() => {
-        axios
-            .get(`http://localhost:3001/auth/auth`, {
-                headers: {
-                    accessToken: localStorage.getItem("accessToken"),
-                },
+
+        // Fetch product data
+        axios.get(`http://localhost:3001/product`)
+            .then((response) => {
+                setProductData(response.data);
+                setFilteredProducts(response.data);
             })
+            .catch((error) => {
+                console.error("Error fetching product data:", error);
+            });
+
+        // fetch auth  
+        axios.get(`http://localhost:3001/auth/auth`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
             .then((response) => {
                 console.log(response.data);
                 if (response.data.error) {
@@ -47,12 +54,24 @@ function Header() {
             });
     }, []);
 
+    // Function to handle search
+    useEffect(() => {
+        const filteredProducts = productData.filter(Product =>
+            Product.ProductName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredProducts(filteredProducts);
+    }, [searchQuery, productData]);
+
+    const handleSearch = (value) => {
+        setSearchQuery(value);
+    };
+
+    // logout function 
     const logout = () => {
         localStorage.removeItem("accessToken");
         setAuthState({ Email: "", UserID: 0, status: false });
     };
 
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
     return (
         <header className="header">
@@ -76,8 +95,10 @@ function Header() {
                                 <Link to="/promotion">Khuyến mãi</Link>
                             </li>
                             <li>
-                                <Link to="/abouttme">Về chúng tôi</Link>
+                                <Link to="/">Về chúng tôi</Link>
                             </li>
+
+
 
                         </div>
                         <div className="header__icon">
@@ -130,74 +151,32 @@ function Header() {
                     </ul>
                 </nav>
                 <div className={`header__search ${isOpenSearch ? "active" : " "}`}>
-<<<<<<< HEAD
                     <div className="row">
-                    <input
-                        type="text"
-                        placeholder="Search a milk..."
-                        value={searchQuery}
-                        onChange={(e) => handleSearch(e.target.value)}
-                    />
-                </div>
-            </div>
-
-            <nav className="header__nav">
-                <ul>
-                    <div className="sbv">
-                        <li>
-                            <Link to="/">Sản phẩm</Link>
-                        </li>
-                        <li>
-                            <Link to="/promotion">Khuyến mãi</Link>
-                        </li>
-                        <li>
-                            <Link to="/aboutme">Về chúng tôi</Link>
-                        </li>
-
-                        <li>
-                            <Link to="/milk-management">Quản lý sữa</Link>
-                        </li>
+                        <input
+                            type="text"
+                            placeholder="Search a milk..."
+                            value={searchQuery}
+                            onChange={(e) => handleSearch(e.target.value)}
+                        />
+                        <CloseOutlined onClick={() => {
+                            setIsOpenSearch(false);
+                            setSearchQuery("");
+                            setFilteredProducts([]);
+                        }} />
                     </div>
-                    <div className="header__icon">
-                        <li onClick={() =>setIsOpenSearch(true)}>
-                            <SearchOutlined />
-                        </li>
-                        <Link to="/cart">
-                        <li>
-                            <ShoppingCartOutlined />
-                        </li>
-                        </Link>
-                       
-                        <li className="header__userdropdow">
-                            <UserOutlined />
-                           <ul className="userdropdow">
-                            <Link to="/vieworder">
-                           <li>Xem đơn</li>
-                           </Link>
-                           <hr />
-                            <Link to="/profile">
-                            <li>Hồ sơ của tôi</li>
-                            </Link>
-                            <hr/>
-                            <Link to="/login">
-                            <li>Đăng xuất</li>
-                            </Link>
-                           </ul>
-                        </li>
-                        
-                    </div>
-                </ul>
-            </nav>
-            <div className={`header__search ${isOpenSearch ? "active" : " "}`}>
-                <input type="text" placeholder="Search a milk..." />
-                <CloseOutlined onClick={() => setIsOpenSearch(false)} />
-            </div>
-            
-=======
-                    <input type="text" placeholder="Search a milk..." />
-                    <CloseOutlined onClick={() => setIsOpenSearch(false)} />
+
+                    {searchQuery && (
+                        <ul className="search-results">
+                            {filteredProducts.map(product => (
+                                <li key={product.ProductID}>
+                                    <Link to={`/product/${product.ProductID}`}>{product.ProductName}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+
                 </div>
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
             </AuthContext.Provider>
         </header>
     )

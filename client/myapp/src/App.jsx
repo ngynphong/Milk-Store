@@ -14,23 +14,14 @@ import Vieworder from "./pages/vieworder";
 
 import Forgotpassword from "./pages/forgotpassword";
 import Editpassword from "./pages/editpassword";
-<<<<<<< HEAD
-import Dashboardpage from "./pages/dashboardpage/dashboardpage";
-import Checkout from "./pages/checkout";
-=======
 import { AuthContext } from "./contexts/AuthContext";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 // import HeaderAdmin from "./components/header-admin";
 import AdminHomePage from "./pages/home/AdminHomePage";
 import CustomerManagement from "./pages/customer-management";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9980fb2c02aecbc5380c35433e0195c980072104
 
 function App() {
 
