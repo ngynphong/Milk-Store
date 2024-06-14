@@ -23,6 +23,11 @@ import AdminHomePage from "./pages/home/AdminHomePage";
 import CustomerManagement from "./pages/customer-management";
 
 
+
+
+import ProductPage from "./pages/productPage";
+
+
 function App() {
 
   const [authState, setAuthState] = useState({
@@ -77,10 +82,28 @@ function App() {
           path: "/profile/:UserID",
           element: <Profile />
         },
+        {
+          path: "/productFilter",
+          element: <ProductPage />
+        },
 
       ]
     },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     {
       path: "/",
       element: <Layout />,

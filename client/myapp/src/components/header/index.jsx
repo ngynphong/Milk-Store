@@ -89,7 +89,7 @@ function Header() {
                     <ul>
                         <div className="sbv">
                             <li>
-                                <Link to="/">Sản phẩm</Link>
+                                <Link to="/productFilter">Sản phẩm</Link>
                             </li>
                             <li>
                                 <Link to="/promotion">Khuyến mãi</Link>
