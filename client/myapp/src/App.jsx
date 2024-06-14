@@ -80,7 +80,7 @@ function App() {
           path: "/product/:ProductID",
           element: <Product />,
         },
-        
+
         {
           path: "/profile/:UserID",
           element: <Profile />
@@ -106,7 +106,7 @@ function App() {
 
 
 
-    
+
     {
       path: "/",
       element: <Layout />,
@@ -114,6 +114,14 @@ function App() {
         {
           path: "/adminHomePage",
           element: <AdminHomePage />,
+        },
+        {
+          path: "/productFilter",
+          element: <ProductPage />
+        },
+        {
+          path: "/profile/:UserID",
+          element: <Profile />
         },
       ]
     },
@@ -147,7 +155,7 @@ function App() {
 
     {
       path: "/customer-manager",
-      element: <CustomerManagement/>
+      element: <CustomerManagement />
     },
 
     {

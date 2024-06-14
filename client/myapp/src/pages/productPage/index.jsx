@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './index.scss'
+import './index.scss';
+
 function ProductPage() {
-    // const [products, setProducts] = useState([]);
     const [listOfProduct, setListOfProduct] = useState([]);
-    const productsPerPage = 4; 
-    const totalPages = 20; // assume 20 pages
-    const windowSize = 5; // display 5 page numbers
+    const productsPerPage = 32; // Display 16 products per page
     const [currentPage, setCurrentPage] = useState(1);
 
     const [brands, setBrands] = useState([]);
     const [categories, setCategories] = useState([]);
     const [ageRanges, setAgeRanges] = useState([]);
-    const [brandFilter, setBrandFilter] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('');
-    const [ageRangeFilter, setAgeRangeFilter] = useState('');
+    const [brandFilter, setBrandFilter] = useState([]);
+    const [categoryFilter, setCategoryFilter] = useState([]);
+    const [ageRangeFilter, setAgeRangeFilter] = useState([]);
 
     let navigate = useNavigate();
 
-    // const totalPages = Math.ceil(listOfProduct.length / productsPerPage);
-    const startPage = Math.max(1, currentPage - Math.floor(windowSize / 2));
-    const endPage = Math.min(totalPages, currentPage + Math.floor(windowSize / 2));
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
 
     useEffect(() => {
         axios.get('http://localhost:3001/product').then((response) => {
@@ -72,14 +64,25 @@ function ProductPage() {
         }
     };
 
-    const filteredProducts = listOfProduct.slice(
-        (currentPage - 1) * productsPerPage,
-        currentPage * productsPerPage
-    );
+    const filteredProducts = listOfProduct.filter(product => {
+        if (brandFilter.length > 0 && !brandFilter.includes(product.BrandID.toString())) return false;
+        if (categoryFilter.length > 0 && !categoryFilter.includes(product.CategoryID.toString())) return false;
+        if (ageRangeFilter.length > 0 && !ageRangeFilter.includes(product.AgeRangeID.toString())) return false;
+
+        return true;
+    });
+
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const displayedProducts = filteredProducts.slice(startIndex, endIndex);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return (
         <div className="product-page">
-
             <div className='leftzone'>
                 <h1>Filter Product</h1>
                 <form>
@@ -125,24 +128,19 @@ function ProductPage() {
                         ))}
                     </div>
                 </form>
-                <ul>
-
-                </ul>
             </div>
 
             <div className="body__background1">
-
                 <div className="body">
-                    <h1> Sản Phẩm   </h1>
+                    <h1>Sản Phẩm</h1>
                 </div>
                 <div className="body__1__product">
-                    {filteredProducts.map(product => (
+                    {displayedProducts.map(product => (
                         <div key={product.ProductID} onClick={() => {
                             navigate(`/product/${product.ProductID}`)
-                        }} >
-                            <div >
-                                <img src={product.ImgProduct}
-                                    alt="" />
+                        }}>
+                            <div>
+                                <img src={product.ImgProduct} alt="" />
                                 <h4>{product.ProductName}</h4>
                                 <span>{product.Price}</span>
                                 <div>
@@ -151,17 +149,18 @@ function ProductPage() {
                             </div>
                         </div>
                     ))}
-
                 </div>
                 <div className='switch-page'>
                     <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
                 </div>
             </div>
-
         </div>
     );
-    
+
     function Pagination({ totalPages, currentPage, handlePageChange }) {
+        const startPage = Math.max(1, currentPage - Math.floor(5 / 2));
+        const endPage = Math.min(totalPages, currentPage + Math.floor(5 / 2));
+
         return (
             <div className="pagination">
                 {startPage > 1 && (
@@ -185,6 +184,5 @@ function ProductPage() {
         );
     }
 }
-
 
 export default ProductPage;

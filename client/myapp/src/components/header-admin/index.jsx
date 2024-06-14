@@ -84,7 +84,7 @@ function HeaderAdmin() {
                 <ul>
                     <div className="sbv">
                         <li>
-                            <Link to="/adminHomePage">Sản phẩm</Link>
+                            <Link to="/productFilter">Sản phẩm</Link>
                         </li>
                         <li>
                             <Link to="/promotion-management">Quản lý khuyến mãi</Link>
