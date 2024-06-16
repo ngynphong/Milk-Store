@@ -1,6 +1,7 @@
 
 // import { Link, useNavigate } from 'react-router-dom';
 import "./dashboardpage.scss";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
     // ProfileOutlined,
@@ -12,7 +13,7 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { Footer } from "antd/es/layout/layout";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,6 +25,8 @@ function getItem(label, key, icon, children) {
         label,
     };
 }
+
+// let navigate = useNavigate();
 
 const Dashboardpage = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -38,12 +41,18 @@ const Dashboardpage = () => {
         location.pathname.split("/")[location.pathname.split("/").length - 1];
     const role = "owner";
     // const keyConfig = {
-    //     club1: "clubs",
-    //     club2: "clubs",
-    //     club3: "clubs",
     // };
     const dataOpen = JSON.parse(localStorage.getItem("keys")) ?? [];
 
+    const [authState, setAuthState] = useState({
+        Email: "",
+        UserID: 0,
+        status: false,
+    });
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        setAuthState({ Email: "", UserID: 0, status: false });
+    };
     const [openKeys, setOpenKeys] = useState(dataOpen);
 
     useEffect(() => {
@@ -55,16 +64,24 @@ const Dashboardpage = () => {
         //         getItem("duyệt đơn", "booking", <CheckCircleOutlined />, ),
         //     ]);
         // }
+        axios.get("http://localhost:3001/auth/auth", {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        })
+            .then((response) => {
+                setItems([
+                    getItem("Hồ sơ", `profile/${response.data.UserID}`, <UserOutlined />),
+                    getItem("Đơn hàng của tôi", "vieworder", <HeartOutlined />),
+                    getItem("Thay đổi mật khẩu", "reset", <KeyOutlined />),
+                    getItem("Đăng xuất", logout, <LogoutOutlined />),
+                ]);
+            })
+            .catch((error) => {
+                console.error(error);
+                // navigate("/dashboardpage");
 
-        if (role === "owner") {
-            setItems([
-
-                getItem("Hồ sơ", "account", <UserOutlined />),
-                getItem("Đơn hàng của tôi", "vieworder", <HeartOutlined />,),
-                getItem("Thay đổi mật khẩu", "reset", <  KeyOutlined />,),
-                getItem("đăng xuất", "vieworder", <LogoutOutlined />,),
-            ]);
-        }
+            });
     }, []);
 
     // Event handler for submenu open/close

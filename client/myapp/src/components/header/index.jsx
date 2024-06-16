@@ -115,7 +115,7 @@ function Header() {
                             </Link>
                             <li className="header__userdropdow">
 
-                                <UserOutlined />
+                                <Link to="/dashboardpage"><UserOutlined /></Link>
                                 <ul className="userdropdow">
                                     <li>{authState.status && (
                                         <li>
