@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const {Cart} = require('../models');
+const { Cart, User } = require('../models');
+const { where } = require('sequelize');
 
 router.get('/', async (req, res) => {
     const listCart = await Cart.findAll();
     res.json(listCart);
 });
+
 // Create new Cart
 router.post('/', async (req, res) => {
     const cart = req.body;
     await Cart.create(cart);
+    res.json(cart);
+});
+
+//add to cart
+router.post('/:UserID', async (req, res) => {
+    const userID = req.params.UserID;
+    const cart = req.body;
+    await Cart.create(cart, { where: { UserID: userID } });
     res.json(cart);
 });
 

@@ -45,9 +45,9 @@ const ProfileForm = () => {
       });
   };
 
- 
-   return (
-     <div>
+
+  return (
+    <div>
       <div>
         <Header />
       </div>
@@ -63,12 +63,12 @@ const ProfileForm = () => {
               type="email"
               id="Email"
               name="Email"
-              //value={formData.Email}
+              value={formData.Email}
               readOnly
             />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -77,7 +77,7 @@ const ProfileForm = () => {
               value={formData.Password}
               readOnly
             />
-          </div>
+          </div> */}
 
 
           <div className="form-group">
@@ -125,10 +125,10 @@ const ProfileForm = () => {
           </div>
         </form>
       </form>
-     </div>
-   )
- }
- 
- 
+    </div>
+  )
+}
 
- export default ProfileForm;
+
+
+export default ProfileForm;

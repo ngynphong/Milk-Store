@@ -136,7 +136,11 @@ function App() {
         {
           path: "vieworder",
           element: <Vieworder />
-        }
+        },
+        {
+          path: "profile/:UserID",
+          element: <Profile />
+        },
       ]
     },
 
