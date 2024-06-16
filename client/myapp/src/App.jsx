@@ -28,6 +28,7 @@ import Resetpassword from "./pages/resetpassword";
 
 
 import ProductPage from "./pages/productPage";
+import Counsel from "./pages/counsel/counsel";
 
 
 function App() {
@@ -89,7 +90,10 @@ function App() {
           path: "/productFilter",
           element: <ProductPage />
         },
-
+        {
+          path: "/counsel",
+          element: <Counsel />
+        },
       ]
     },
 
@@ -184,9 +188,10 @@ function App() {
       element: <Editpassword />
     },
     {
-      path: "/profile/:UserID",
-      element: <Profile />
+      path: "/counsel",
+      element: <Counsel />
     },
+
 
   ]);
 

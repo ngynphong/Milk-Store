@@ -1,0 +1,136 @@
+.counsel__form {
+    margin-top: 170px;
+
+    h2 {
+        margin-left: 140px;
+        margin-bottom: 10px;
+        color: rgb(128, 165, 165);
+    }
+}
+
+.counsel__group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-container {
+    flex: 2;
+    margin-right: 20px;
+    margin-left: 120px;
+}
+
+.channel-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 120px;
+    font-size: 14px;
+
+    h3 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: rgb(128, 165, 165);
+    }
+}
+
+.onvideo {
+    display: flex;
+
+    h3 {
+        padding: 0px 10px 15px;
+        font-weight: normal;
+        margin-top: 20px;
+        color: rgb(128, 165, 165);
+        box-sizing: content-box;
+        outline: none;
+    }
+}
+
+.channel-container iframe {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.contten__page {
+    display: flex;
+
+    h3 {
+        margin-top: 50px;
+        margin-left: 120px;
+        margin-right: 30px;
+        font-weight: normal;
+    }
+}
+
+.input__group {
+    margin-left: 120px;
+    margin-top: 35px;
+    margin-right: 43px;
+
+    .groupA {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    }
+
+    div {
+        margin-bottom: 10px;
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: rgb(77, 27, 27);
+        background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: border-color 0.3s ease-in-out;
+
+        &:hover {
+            border-color: #007bff;
+            outline: none;
+        }
+    }
+}
+
+.image {
+    margin-top: 50px;
+    margin-right: 120px;
+}
