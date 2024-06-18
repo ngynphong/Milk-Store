@@ -24,6 +24,15 @@ function Login() {
 
     const adminRole = 1;
 
+    const savePassword = (password) => {
+        localStorage.setItem('password', password);
+    }
+
+    const handleSavePassword = (e) => {
+        const password = formik.values.Password;
+        savePassword(password);
+    }
+
     const formik = useFormik({
         initialValues: {
             Email: '',
@@ -103,7 +112,8 @@ function Login() {
                         <br />
                         <div className="remember-forgot">
                             <label>
-                                <input type="checkbox" />Ghi nhớ mật khẩu
+                                <input type="checkbox" onClick={handleSavePassword} />Ghi nhớ mật khẩu
+
                             </label>
                             <a href="/forgotpassword">Quên mật khẩu?</a>
                         </div>
@@ -132,5 +142,10 @@ function Login() {
         </div>
     );
 }
+
+
+
+
+
 
 export default Login;
