@@ -1,0 +1,37 @@
+.terms-of-service {
+    margin-top: 600px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 20px;
+  
+    section{
+        margin-top: 100px;
+    }
+    h1 {
+      text-align: center;
+      color: #007BFF;
+    }
+  
+    h2 {
+      color: #0056b3;
+      margin-top: 20px;
+    }
+  
+    p {
+      margin: 10px 0;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+  
+      li {
+        background: #f8f9fa;
+        margin: 5px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+    }
+  }
+  
