@@ -23,4 +23,25 @@
         margin-top: 10px;
         list-style-type: none;
     }
+    
+.list_dichvu{ 
+    a{
+        list-style-type: none;
+        text-decoration: none;
+    }
+    
+    &:hover{
+        text-decoration: underline;
+    }
+    }
+    &__dichvo{
+        a{
+            text-decoration: none;
+        }
+    }
+}
+.list__dichvo{
+    a{
+        text-decoration: none;
+    }
 }
