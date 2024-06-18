@@ -28,7 +28,9 @@ import Resetpassword from "./pages/resetpassword";
 
 
 import ProductPage from "./pages/productPage";
-import Counsel from "./pages/counsel/counsel";
+import Policy from "./pages/policy";
+import ReturnPolicy from "./pages/return";
+import PrivacyPolicy from "./pages/pivacy";
 
 
 function App() {
@@ -91,9 +93,18 @@ function App() {
           element: <ProductPage />
         },
         {
-          path: "/counsel",
-          element: <Counsel />
+          path: "/policy",
+          element: <Policy/>
         },
+        {
+          path: "/return",
+          element: <ReturnPolicy/>
+        },
+        {
+          path: "/pivacy",
+          element: <PrivacyPolicy/>
+        },
+
       ]
     },
 
@@ -140,11 +151,7 @@ function App() {
         {
           path: "vieworder",
           element: <Vieworder />
-        },
-        {
-          path: "profile/:UserID",
-          element: <Profile />
-        },
+        }
       ]
     },
 
@@ -192,10 +199,9 @@ function App() {
       element: <Editpassword />
     },
     {
-      path: "/counsel",
-      element: <Counsel />
+      path: "/profile/:UserID",
+      element: <Profile />
     },
-
 
   ]);
 
