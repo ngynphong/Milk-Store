@@ -1,22 +1,24 @@
-import { Footer } from "antd/es/layout/layout";
-import "./index.scss";
 import { Link } from "react-router-dom";
+import "./index.scss";
 
 function HeaderEnd() {
     return (
-        <div className="foooter">
-            <div className="header__end">
+        <div className="header__end">
             <div className="shop">
                 <h4>Shop Happy Mother&Baby</h4>
             </div>
             <div className="chamsoc">
                 <h4>CHĂM SÓC KHÁCH HÀNG</h4>
                 <div className="list__dichvu">
-                    <li>
-                        <Link to="/counsel">Tư vấn cá nhân</Link>
-                    </li>
-                    <li>Tra cứu háo đơn</li>
-                    <li>Hotline 24/7</li>
+                    <li>Tư vấn cá nhân</li>
+                    <li>Tra cứu hóa đơn</li>   
+                    <div className="list__dichvo">               
+                    <Link to="/policy">Điều Khoản Dịch Vụ</Link> 
+                    <br/>
+                    <Link to="/return">Chính Sách Đổi Trả</Link> 
+                    <br/>   
+                    <Link to="/pivacy">Chính Sách Bảo Mật</Link> 
+                    </div>
                 </div>
             </div>
             <div>
@@ -65,10 +67,7 @@ function HeaderEnd() {
                         alt="Visa Pay" />
                 </div>
             </div>
-            </div>
-            <Footer style={{ textAlign: "center", backgroundColor: "#E3F2EE" }}>
-                    Happy Mother&Baby ©{new Date().getFullYear()} Created by F4 đẹp trai
-                </Footer>
+
         </div>
     )
 }
